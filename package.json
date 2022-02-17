@@ -1,0 +1,31 @@
+{
+  "name": "dalxndr-homepage",
+  "version": "1.0.0",
+  "description": "Daniel's Website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next dev -H 0.0.0.0",
+    "build": "next build",
+    "lint": "next lint",
+    "prettier": "prettier -write ."
+  },
+  "keywords": [],
+  "author": "Daniel Alexander<realdanielalexander@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "@chakra-ui/icons": "^1.1.5",
+    "@chakra-ui/react": "^1.8.3",
+    "@emotion/react": "^11.7.1",
+    "framer-motion": "^6.2.4",
+    "next": "^12.0.10",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.8.0",
+    "eslint-config-next": "^12.0.10",
+    "prettier": "^2.5.1"
+  }
+}
