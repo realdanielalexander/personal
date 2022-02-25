@@ -64,18 +64,10 @@ const Navbar = props => {
                     width={{ base: 'full', md: 'auto' }}
                     alignItems="center"
                     flexGrow={1}
-                    mt={{ base: 4, nmd: 0 }}>
-
-                    {/* Links Deactivated    
-                    <LinkItem href="/projects" path={path}>
-                        Projects
-                    </LinkItem>
+                    mt={{ base: 4, nmd: 0 }}> 
                     <LinkItem href="/blog" path={path}>
                         Blog
                     </LinkItem>
-                    <LinkItem href="/gallery" path={path}>
-                        Gallery
-                    </LinkItem> */}
                 </Stack>
 
                 <Box flex={1} align="right">
@@ -83,27 +75,19 @@ const Navbar = props => {
                     <Box
                         ml={2}
                         display={{base: 'inline-block', md:'none'}}>
-                        {/* Deactivate Menu
                         <Menu>
                             <MenuButton 
                             as={IconButton} 
                             icon={<HamburgerIcon/>} 
                             variant="outline" 
                             aria-label="Options">
-
                             </MenuButton>
                             <MenuList>
-                                <NextLink href="/" passHref>
-                                    <MenuItem as={Link}>About</MenuItem>
-                                </NextLink>
-                                <NextLink href="/works" passHref>
-                                    <MenuItem as={Link}>Works</MenuItem>
-                                </NextLink>
-                                <NextLink href="/posts" passHref>
-                                    <MenuItem as={Link}>Posts</MenuItem>
+                                <NextLink href="/blog" passHref>
+                                    <MenuItem as={Link}>Blog</MenuItem>
                                 </NextLink>
                             </MenuList>
-                        </Menu> */}
+                        </Menu>
                     </Box>
                 </Box>
             </Container>
