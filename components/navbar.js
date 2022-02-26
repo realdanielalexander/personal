@@ -21,18 +21,20 @@ import { HamburgerIcon } from '@chakra-ui/icons'
 
 const blink = keyframes`
   50% {
-    border-color: transparent;
+    // Animation
+    // color: transparent;
   }
 `
 
 const Caret = styled.span`
-  border-left: 0.6em solid white;
-  animation: ${blink} 1s steps(1) infinite;
-  animation-timing-function: ease-in-out;
+  color: white;
+  // Animation
+  // animation: ${blink} 1s steps(1) infinite;
+  // animation-timing-function: ease-in-out;
 `
 
 const CaretInvisible = styled.span`
-  border-left: 0.6em solid transparent;
+  color: transparent;
 `
 
 const LinkItem = ({ href, path, children }) => {
@@ -40,7 +42,7 @@ const LinkItem = ({ href, path, children }) => {
   const inactiveColor = useColorModeValue('gray200', 'whiteAlpha')
   return (
     <Box>
-      {active ? <Caret /> : <CaretInvisible />}
+      {active ? <Caret>&gt;</Caret> : <CaretInvisible>&gt;</CaretInvisible>}
       <NextLink href={href}>
         <Link p={2} color={inactiveColor} borderRadius="md">
           {children}

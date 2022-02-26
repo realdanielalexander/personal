@@ -3,14 +3,19 @@ import { ExternalLinkIcon } from '@chakra-ui/icons'
 import P from '../../components/paragraph'
 import Layout from '../../components/layouts/article'
 import { Title, BlogImage, Meta } from '../../components/blog'
+import Polaroid from '../../components/polaroid'
+import PolaroidDeck from '../../components/polaroid'
 
 const Project = () => {
   return (
     <Layout title="Let's Play">
       <Container maxW="container.md">
-        <BlogImage src="/images/studying-abroad.jpg" alt="Let's Play!" />
+        <BlogImage
+          src="/images/studying-abroad.jpg"
+          alt="Studying Abroad — My Experience"
+        />
         <Title>
-          Studying Abroad — My Experience <Badge>2022</Badge>
+          Studying Abroad — My Experience <Badge>February 26, 2022</Badge>
         </Title>
         <P>
           It was May 2021, I was just about to finish my sixth semester. I was
@@ -84,19 +89,29 @@ const Project = () => {
           California, Massachusetts and Washington DC, though I&apos;ve only
           learned that Washington DC is not a state. It&apos;s amazing to be
           physically present in places from movies and video games that I grew
-          up with. Here are some highlights: - Coffee with a view of Brooklyn
-          Bridge, New York City - Walt Disney World, Orlando - Surfing in
-          Ventura, California - Building campfire in Amherst, Massachusetts - US
-          Capitol, Washington DC The last month was the hardest. Realizing that
-          I only had a few weeks before I go home, I began to walk slower to
-          admire the sights. This experience was the most transformative
-          education experience in my life. I saw a different part of the world
-          and immersed myself in communities that I haven&apos;t even thought to
-          be part of.
+          up with. Here are some highlights:
+        </P>
+        <P>
+          {/* <BlogImage
+            src="/images/brooklyn-bridge.jpg"
+            alt="Coffee with a view of Brooklyn Bridge, New York City"
+          /> */}
+          Coffee with a view of Brooklyn Bridge, New York City - Walt Disney
+          World, Orlando - Surfing in Ventura, California - Building campfire in
+          Amherst, Massachusetts - US Capitol, Washington DC The last month was
+          the hardest. Realizing that I only had a few weeks before I go home, I
+          began to walk slower to admire the sights. This experience was the
+          most transformative education experience in my life. I saw a different
+          part of the world and immersed myself in communities that I
+          haven&apos;t even thought to be part of.
         </P>
         <span>Tags: </span>
         <Meta>Study abroad</Meta>
         <Meta>Self improvement</Meta>
+
+        <P>
+          <PolaroidDeck />
+        </P>
       </Container>
     </Layout>
   )
