@@ -27,7 +27,9 @@ import thumbStudyAbroad from '../public/images/studying-abroad.jpg'
 import { BioDescription, BioSection, BioYear } from '../components/bio'
 import { BlogGridItem } from '../components/blog-grid-item'
 
-const Blog = () => {
+import { getSortedPostsData } from '../libs/posts'
+
+const Blog = ({ allPostsData }) => {
   return (
     <Layout>
       <Container maxW="container.md">
@@ -49,27 +51,31 @@ const Blog = () => {
           </Box>
           <Container maxW="100%" mt={8} mx={0}>
             <SimpleGrid columns={[1, 2, 2]} gap={4}>
-              <Section>
+              {allPostsData.map(({ excerpt, slug, id, title, thumbnail }) => (
                 <BlogGridItem
-                  id="studying-abroad-my-experience"
-                  title="Studying Abroad — My Experience"
-                  thumbnail={thumbStudyAbroad}
+                  key={id}
+                  id={slug}
+                  title={title}
+                  thumbnail={thumbnail}
                 >
-                  Looking out through the window in my American Airlines flight
-                  as the aircraft descended for landing at the Philadelphia
-                  International Airport, I still couldn’t believe that I was
-                  given the opportunity to study abroad for a semester at the
-                  University of Pennsylvania. How did it go, you might naturally
-                  ask, I will try to break down my experience in this short
-                  write-up.
+                  {excerpt}
                 </BlogGridItem>
-              </Section>
+              ))}
             </SimpleGrid>
           </Container>
         </Section>
       </Container>
     </Layout>
   )
+}
+
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData()
+  return {
+    props: {
+      allPostsData
+    }
+  }
 }
 
 export default Blog
