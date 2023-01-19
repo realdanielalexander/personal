@@ -4,7 +4,7 @@ import { mode } from '@chakra-ui/theme-tools'
 const styles = {
   global: props => ({
     body: {
-      bg: mode('#FFFAF3', '#202023')(props)
+      bg: mode('#FFFAF3', '#202023', '#323437')(props)
     }
   })
 }
@@ -37,7 +37,7 @@ const components = {
 }
 
 const fonts = {
-  heading: "'M PLUS Rounded 1c'"
+  heading: "'Roboto Mono'"
 }
 
 const colors = {

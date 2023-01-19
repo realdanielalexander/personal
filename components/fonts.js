@@ -5,6 +5,8 @@ const Fonts = () => (
     styles={`
     @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
     `}
   />
 )

@@ -24,7 +24,7 @@ import Navbar from '../components/navbar'
 import Section from '../components/section'
 import Paragraph from '../components/paragraph'
 import thumbStudyAbroad from '../public/images/studying-abroad.jpg'
-import { BioDescription, BioSection, BioYear } from '../components/bio'
+import { BioDescription, BioSection, BioYear } from '../components/experiences'
 import { BlogGridItem } from '../components/blog-grid-item'
 
 import { getSortedPostsData } from '../libs/posts'
@@ -32,7 +32,7 @@ import { getSortedPostsData } from '../libs/posts'
 const Blog = ({ allPostsData }) => {
   return (
     <Layout>
-      <Container maxW="container.md">
+      <Container maxW="container.xl" minH={'100vh'}>
         <Section delay={0.1}>
           <Heading as="h3" variant="section-title">
             Posts
