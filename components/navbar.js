@@ -14,10 +14,15 @@ import {
   MenuButton,
   IconButton,
   keyframes,
-  useColorModeValue
+  useColorModeValue,
+  Button,
+  useColorMode
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
-import { HamburgerIcon } from '@chakra-ui/icons'
+import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setColor } from '../store/slices/colorModeSlice'
 
 const blink = keyframes`
   50% {
@@ -53,15 +58,45 @@ const LinkItem = ({ href, path, children }) => {
   )
 }
 
+const colors = [
+  {
+    name: 'Cyberspace',
+    background: '#181C18',
+    text: '#C0F7E1',
+    accent: '#9578D3'
+  },
+  {
+    name: 'Terminal',
+    background: '#191A1B',
+    text: '#D2E9DF',
+    accent: '#79A617'
+  },
+  {
+    name: 'Paper',
+    background: '#EEEEEE',
+    text: '#444444',
+    accent: ' #444444'
+  },
+  {
+    name: 'Serika Dark',
+    background: '#323437',
+    text: '#D1D0C5',
+    accent: '#E2B72C'
+  }
+]
+
 const Navbar = props => {
   const { path } = props
 
+  const color = useSelector(state => state.colorMode)
+  const dispatch = useDispatch()
+
+  const onClickHandler = color => dispatch(setColor(color))
   return (
     <Box
       position="fixed"
       as="nav"
       w="100%"
-      bg={useColorModeValue('#ffffff40', '#20202380')}
       style={{ backdropFilter: 'blur(10px)' }}
       zIndex={1}
       {...props}
@@ -85,6 +120,7 @@ const Navbar = props => {
           width={{ base: 'full', md: 'auto' }}
           alignItems="center"
           flexGrow={1}
+          gap={4}
           mt={{ base: 4, nmd: 0 }}
         >
           <LinkItem href="/blog" path={path}>
@@ -92,8 +128,7 @@ const Navbar = props => {
           </LinkItem>
         </Stack>
 
-        <Box flex={1} align="right">
-          <ThemeToggleButton />
+        <Box flex={1} flexDirection={'row'} align="right">
           <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
             <Menu>
               <MenuButton
@@ -109,6 +144,31 @@ const Navbar = props => {
               </MenuList>
             </Menu>
           </Box>
+        </Box>
+
+        <Box>
+          <Menu>
+            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+              {color.name}
+            </MenuButton>
+            <MenuList>
+              {colors.map(color => (
+                <MenuItem
+                  key={color.name}
+                  backgroundColor={color.background}
+                  textColor={color.accent}
+                  style={{
+                    transition: 'all .5s ease',
+                    WebkitTransition: 'all .5s ease',
+                    MozTransition: 'all .5s ease'
+                  }}
+                  onClick={() => onClickHandler(color)}
+                >
+                  {color.name}
+                </MenuItem>
+              ))}
+            </MenuList>
+          </Menu>
         </Box>
       </Container>
     </Box>

@@ -22,7 +22,7 @@ const PolaroidCaption = styled.p`
   margin-top: 8px;
 `
 
-const Polaroid = () => {
+const Polaroid = ({}) => {
   return (
     <Box
       w="100%"
@@ -36,9 +36,7 @@ const Polaroid = () => {
       borderRadius="3px"
     >
       <Image src="/images/brooklyn-bridge.jpg" w="320px" />
-      <PolaroidCaption>
-        Coffee with a view of Brooklyn Bridge, New York City{' '}
-      </PolaroidCaption>
+      <PolaroidCaption>{}</PolaroidCaption>
     </Box>
   )
 }

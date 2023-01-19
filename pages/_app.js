@@ -1,8 +1,10 @@
+import * as React from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
 import Layout from '../components/layouts/main'
 import Fonts from '../components/fonts'
 import theme from '../libs/theme'
 import { AnimatePresence } from 'framer-motion'
+import wrapper from '../store'
 import './styles.css'
 
 const Website = ({ Component, pageProps, router }) => {
@@ -18,4 +20,4 @@ const Website = ({ Component, pageProps, router }) => {
   )
 }
 
-export default Website
+export default wrapper.withRedux(Website)
