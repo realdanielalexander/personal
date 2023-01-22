@@ -16,11 +16,12 @@ import {
   keyframes,
   useColorModeValue,
   Button,
-  useColorMode
+  useColorMode,
+  Divider
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setColor } from '../store/slices/colorModeSlice'
 
@@ -91,7 +92,18 @@ const Navbar = props => {
   const color = useSelector(state => state.colorMode)
   const dispatch = useDispatch()
 
-  const onClickHandler = color => dispatch(setColor(color))
+  const onClickHandler = color => {
+    dispatch(setColor(color))
+    window.localStorage.setItem('colorMode', JSON.stringify(color))
+  }
+
+  useEffect(() => {
+    const colorMode = window.localStorage.getItem('colorMode')
+    if (colorMode) {
+      dispatch(setColor(JSON.parse(colorMode)))
+    }
+  }, [dispatch])
+
   return (
     <Box
       position="fixed"
@@ -144,31 +156,30 @@ const Navbar = props => {
               </MenuList>
             </Menu>
           </Box>
-        </Box>
-
-        <Box>
-          <Menu>
-            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-              {color.name}
-            </MenuButton>
-            <MenuList>
-              {colors.map(color => (
-                <MenuItem
-                  key={color.name}
-                  backgroundColor={color.background}
-                  textColor={color.accent}
-                  style={{
-                    transition: 'all .5s ease',
-                    WebkitTransition: 'all .5s ease',
-                    MozTransition: 'all .5s ease'
-                  }}
-                  onClick={() => onClickHandler(color)}
-                >
-                  {color.name}
-                </MenuItem>
-              ))}
-            </MenuList>
-          </Menu>
+          <Box ml={2} display={{ base: 'inline-block' }}>
+            <Menu>
+              <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                {color.name}
+              </MenuButton>
+              <MenuList>
+                {colors.map(color => (
+                  <MenuItem
+                    key={color.name}
+                    backgroundColor={color.background}
+                    textColor={color.accent}
+                    style={{
+                      transition: 'all .5s ease',
+                      WebkitTransition: 'all .5s ease',
+                      MozTransition: 'all .5s ease'
+                    }}
+                    onClick={() => onClickHandler(color)}
+                  >
+                    {color.name}
+                  </MenuItem>
+                ))}
+              </MenuList>
+            </Menu>
+          </Box>
         </Box>
       </Container>
     </Box>
