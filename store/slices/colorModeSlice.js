@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  name: 'light',
-  background: '#FFFFFF40'
+  name: 'Cyberspace',
+  background: '#181C18',
+  text: '#C0F7E1',
+  accent: '#9578D3'
 }
 
 export const colorModeSlice = createSlice({

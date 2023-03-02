@@ -28,9 +28,7 @@ const Post = ({ post, preview }) => {
         ) : (
           <>
             <Box className="mb-32">
-              <Head>
-                <Text as={'h1'}>{post.title}</Text>
-              </Head>
+              <Head>{/* <Text as={'h1'}>{post.title}</Text> */}</Head>
               <Text>{post.coverImage}</Text>
               <Text>{post.date}</Text>
               <Text>{post.author}</Text>
