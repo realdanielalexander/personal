@@ -37,7 +37,7 @@ const components = {
 }
 
 const fonts = {
-  heading: "'Roboto Mono'"
+  heading: "'Roboto'"
 }
 
 const colors = {

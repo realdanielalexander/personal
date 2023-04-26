@@ -1,29 +1,45 @@
 import NextLink from 'next/link'
-import { Heading, Box, Image, Link, Badge } from '@chakra-ui/react'
+import {
+  Heading,
+  Box,
+  Image,
+  Link,
+  Badge,
+  Grid,
+  GridItem,
+  VStack,
+  Flex
+} from '@chakra-ui/react'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 
 export const Title = ({ children }) => (
-    <Box>
-        <NextLink href='/'>
-            <Link>Projects</Link>
-        </NextLink>
-        <span>
-            &nbsp;
-            <ChevronRightIcon />
-            &nbsp;
-        </span>
-        <Heading display="inline-block" as="h3" fontSize={20} mb={4}>
-            {children}
-        </Heading>
-    </Box>
+  <Box>
+    <NextLink href="/">
+      <Link>Projects</Link>
+    </NextLink>
+    <span>
+      &nbsp;
+      <ChevronRightIcon />
+      &nbsp;
+    </span>
+    <Heading display="inline-block" as="h3" fontSize={20} mb={4}>
+      {children}
+    </Heading>
+  </Box>
+)
+
+export const TitleSection = ({ children }) => (
+  <Flex flexDirection={'column'} h={'100%'} justifyContent="center">
+    {children}
+  </Flex>
 )
 
 export const ProjectImage = ({ src, alt }) => (
-    <Image borderRadius="lg" w="full" src={src} alt={alt} mb={4} />
+  <Image borderRadius="lg" w="full" src={src} alt={alt} mb={4} />
 )
 
 export const Meta = ({ children }) => (
-    <Badge colorScheme="green" mr={2}>
-        {children}
-    </Badge>
+  <Badge colorScheme="green" mr={2}>
+    {children}
+  </Badge>
 )

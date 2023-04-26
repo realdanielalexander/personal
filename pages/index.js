@@ -10,7 +10,9 @@ import {
   IconButton,
   SimpleGrid,
   Text,
-  Flex
+  Flex,
+  VStack,
+  StackDivider
 } from '@chakra-ui/react'
 import {
   IoLogoGithub,
@@ -33,6 +35,7 @@ import thumbMillennial from '../public/images/millenialfashion.png'
 import { BioDescription, BioSection, BioYear } from '../components/experiences'
 import { useSelector } from 'react-redux'
 import React from 'react'
+import ProjectInline from '../components/ProjectInline'
 
 const icons = [
   {
@@ -82,13 +85,13 @@ const Page = () => {
         justifyContent={'center'}
         flexGrow={1}
       >
-        <Box>
+        <Container maxW="6xl">
           <Heading as="h2" variant="page-title" color={colorMode.accent}>
             Hi! I&apos;m <Text as="span">Daniel Alexander</Text>
           </Heading>
           <Text>
-            A software engineer with 4+ years in front end development. I write,
-            take pictures, and play music in my spare time.
+            In the past five years, I have gathered experience in front-end
+            programming, computer graphics, and machine learning.
           </Text>
           <Box display="flex" gap={'8'} flexGrow={1} mt={4}>
             {icons.map(icon => (
@@ -102,7 +105,7 @@ const Page = () => {
               </Link>
             ))}
           </Box>
-        </Box>
+        </Container>
       </Flex>
       <Section delay={0.1}>
         <Heading as="h3" variant="section-title">
@@ -155,8 +158,8 @@ const Page = () => {
           Projects
         </Heading>
         <Container maxW="100%" mt={8} mx={0}>
-          <SimpleGrid columns={[1, 2, 2]} gap={4}>
-            <ProjectGridItem
+          <VStack divider={<StackDivider />} spacing={4} align={'stretch'}>
+            <ProjectInline
               id="recipe"
               title="Ingredients Detector and Recipe Recommender"
               thumbnail={thumbRecipe}
@@ -164,29 +167,29 @@ const Page = () => {
               A multi-platform application that recommend recipes based on
               ingredients you own by performing a detection algorithm on your
               image
-            </ProjectGridItem>
-            <ProjectGridItem
+            </ProjectInline>
+            <ProjectInline
               id="steganography"
               title="Least Significant Bit Steganography"
               thumbnail={thumbSteganography}
             >
               Hides your message text within an image
-            </ProjectGridItem>
-            <ProjectGridItem
+            </ProjectInline>
+            <ProjectInline
               id="game"
               title="iOS Game Library App"
               thumbnail={thumbGame}
             >
               iOS app to browse video games and save them into your favorites.
-            </ProjectGridItem>
-            <ProjectGridItem
+            </ProjectInline>
+            <ProjectInline
               id="millennial"
               title="Millennial Fashion"
               thumbnail={thumbMillennial}
             >
               Demonstrated end-to-end software engineering practices
-            </ProjectGridItem>
-          </SimpleGrid>
+            </ProjectInline>
+          </VStack>
         </Container>
       </Section>
     </Layout>
