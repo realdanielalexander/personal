@@ -18,6 +18,7 @@ const DesktopMenu = ({ isOpen, onClose }) => {
   const listVariants = {
     show: {
       transition: {
+        delayChildren: 0.3,
         staggerChildren: 0.15
       }
     }
@@ -26,20 +27,35 @@ const DesktopMenu = ({ isOpen, onClose }) => {
   const itemVariants = {
     hidden: {
       opacity: 0,
-      x: -100
+      x: -200
     },
     show: {
       opacity: 1,
       x: 0,
       transition: {
-        duration: 0.15
+        duration: 0.15,
+        ease: [0.17, 0.67, 0.83, 0.67]
       }
     },
     exit: {
       opacity: 0,
-      x: -100
+      x: 0
     }
   }
+
+  const paths = [
+    {
+      href: '/',
+      label: 'About Me'
+    },
+    {
+      href: '/blog',
+      label: 'Posts'
+    }
+  ]
+
+  const color = useSelector(state => state.colorMode)
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -47,6 +63,8 @@ const DesktopMenu = ({ isOpen, onClose }) => {
           w="100vw"
           h="100vh"
           overflow={'hidden'}
+          background={color.background}
+          color={colorMode.text}
           zIndex={1}
           position={'fixed'}
         >
@@ -61,28 +79,42 @@ const DesktopMenu = ({ isOpen, onClose }) => {
             justifyContent={'center'}
             alignItems={'center'}
             fontSize="4rem"
-            color={colorMode.text}
-            background={'linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.35))'}
             fontWeight="bold"
             variants={listVariants}
             initial="hidden"
             animate="show"
             exit="exit"
           >
-            <ListItem as={motion.div} variants={itemVariants}>
-              <NextLink href="/" onClick={() => onClose()}>
-                About Me
-              </NextLink>
-            </ListItem>
-            <ListItem as={motion.div} variants={itemVariants}>
-              <NextLink href="/blog">Posts</NextLink>
-            </ListItem>
-            <ListItem as={motion.div} variants={itemVariants}>
-              <NextLink href="/">Prints</NextLink>
-            </ListItem>
-            <ListItem as={motion.div} variants={itemVariants}>
-              <NextLink href="/">Projects</NextLink>
-            </ListItem>
+            {paths.map((path, index) => (
+              <ListItem
+                key={path.href}
+                style={{
+                  transition: 'color .5s ease',
+                  WebkitTransition: 'color .5s ease',
+                  MozTransition: 'color .5s ease'
+                }}
+                _hover={{
+                  color: color.accent
+                }}
+                color={
+                  router.asPath === path.href ? color.text : color.text_inactive
+                }
+                as={motion.div}
+                variants={{
+                  ...itemVariants,
+                  exit: {
+                    ...itemVariants.exit,
+                    transition: {
+                      delay: index * 1
+                    }
+                  }
+                }}
+              >
+                <NextLink href={path.href} onClick={() => onClose()}>
+                  {path.label}
+                </NextLink>
+              </ListItem>
+            ))}
           </List>
         </AnimatedBox>
       )}

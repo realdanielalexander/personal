@@ -9,10 +9,15 @@ const StyledBox = chakra(motion.div, {
 
 const AnimatedBox = ({ children, delay = 0, ...props }) => (
   <StyledBox
-    initial={{ y: -500, opacity: 0 }}
-    animate={{ y: 0, opacity: 1 }}
-    exit={{ y: -500, opacity: 0 }}
-    transition={{ duration: 0.8, delay, delayChildren: 2 }}
+    style={{
+      transition: 'background .5s ease; color .5s ease',
+      WebkitTransition: 'background .5s ease; color .5s ease',
+      MozTransition: 'background .5s ease; color .5s ease'
+    }}
+    initial={{ y: -1000 }}
+    animate={{ y: 0 }}
+    exit={{ y: 1000 }}
+    transition={{ duration: 0.8, delayChildren: 3 }}
     backdropFilter="blur(10px)"
     {...props}
   >

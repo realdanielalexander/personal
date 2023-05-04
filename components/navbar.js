@@ -62,47 +62,12 @@ const LinkItem = ({ href, path, children }) => {
   )
 }
 
-const colors = [
-  {
-    name: 'Cyberspace',
-    background: '#181C18',
-    background_dark: '#131613',
-    text: '#C0F7E1',
-    accent: '#9578D3'
-  },
-  {
-    name: 'Terminal',
-    background: '#191A1B',
-    background_dark: '#141516',
-    text: '#D2E9DF',
-    accent: '#79A617'
-  },
-  {
-    name: 'Paper',
-    background: '#EEEEEE',
-    background_dark: '#DDDDDD',
-    text: '#444444',
-    accent: ' #444444'
-  },
-  {
-    name: 'Serika Dark',
-    background: '#323437',
-    background_dark: '#2C2E31',
-    text: '#D1D0C5',
-    accent: '#E2B72C'
-  }
-]
-
 const Navbar = props => {
   const { path } = props
 
-  const color = useSelector(state => state.colorMode)
+  const { isOpen, onToggle, onClose } = useDisclosure()
+  const router = useRouter()
   const dispatch = useDispatch()
-
-  const onClickHandler = color => {
-    dispatch(setColor(color))
-    window.localStorage.setItem('colorMode', JSON.stringify(color))
-  }
 
   useEffect(() => {
     const colorMode = window.localStorage.getItem('colorMode')
@@ -110,9 +75,6 @@ const Navbar = props => {
       dispatch(setColor(JSON.parse(colorMode)))
     }
   }, [dispatch])
-
-  const { isOpen, onToggle, onClose } = useDisclosure({ defaultIsOpen: true })
-  const router = useRouter()
 
   return (
     <Box
@@ -144,74 +106,11 @@ const Navbar = props => {
             outline={0}
             variant="link"
             zIndex={2}
+            mt={2}
             onClick={onToggle}
           >
             {isOpen ? 'Close' : 'Menu'}
           </Button>
-          <Box ml={2} display={{ base: 'none', md: 'inline-block' }}>
-            <Menu>
-              <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-                {color.name}
-              </MenuButton>
-              <MenuList>
-                {colors.map(color => (
-                  <MenuItem
-                    key={color.name}
-                    backgroundColor={color.background}
-                    textColor={color.accent}
-                    style={{
-                      transition: 'all .5s ease',
-                      WebkitTransition: 'all .5s ease',
-                      MozTransition: 'all .5s ease'
-                    }}
-                    onClick={() => onClickHandler(color)}
-                  >
-                    {color.name}
-                  </MenuItem>
-                ))}
-              </MenuList>
-            </Menu>
-          </Box>
-          <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
-            <Menu>
-              <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-                <Box
-                  position={'relative'}
-                  borderRadius={'4px'}
-                  w="16px"
-                  h="16px"
-                  bg={color.accent}
-                >
-                  <Box
-                    position={'absolute'}
-                    left={1}
-                    top={1}
-                    borderRadius={'2px'}
-                    w="8px"
-                    h="8px"
-                    bg={color.text}
-                  />
-                </Box>
-              </MenuButton>
-              <MenuList>
-                {colors.map(color => (
-                  <MenuItem
-                    key={color.name}
-                    backgroundColor={color.background}
-                    textColor={color.accent}
-                    style={{
-                      transition: 'all .5s ease',
-                      WebkitTransition: 'all .5s ease',
-                      MozTransition: 'all .5s ease'
-                    }}
-                    onClick={() => onClickHandler(color)}
-                  >
-                    {color.name}
-                  </MenuItem>
-                ))}
-              </MenuList>
-            </Menu>
-          </Box>
         </Box>
       </Container>
     </Box>
