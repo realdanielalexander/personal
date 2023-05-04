@@ -4,7 +4,7 @@ title: Studying Abroad — My Experience
 authors: Daniel Alexander
 thumbnail: /images/studying-abroad.jpg
 tags: [self-improvement]
-excerpt: My study abroad experience
+excerpt: In 2021, I spent a semester studying abroad in the US at the University of Pennsylvania. I learned so much both in and out of the classroom, assimilated with an unfamiliar culture, and made lifelong friends.
 ---
 
 ## Studying Abroad — My Experience

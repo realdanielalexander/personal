@@ -8,57 +8,40 @@ import {
   GridItem,
   Text,
   Heading,
-  Flex
+  Flex,
+  Image,
+  useBreakpointValue
 } from '@chakra-ui/react'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 import { ProjectImage, Meta, TitleSection } from '../../components/project'
 import P from '../../components/paragraph'
 import Layout from '../../components/layouts/article'
 import Title from '../../components/title'
+import ProjectDetail from '../../components/Project/ProjectDetail'
+import ProjectLayout from '../../components/Project/ProjectLayout'
 
 const Project = () => {
   return (
-    <Layout title="Ingredients Detector and Recipe Recommender">
-      <Flex maxW="container.xl" minH={'100vh'} alignItems={'center'}>
-        <Grid templateColumns="repeat(2, 1fr)" gap={16}>
-          <GridItem w="100%">
-            <TitleSection>
-              <Title>Ingredients Detector and Recipe Recommender</Title>
-              <List my={4}>
-                <ListItem>
-                  <Text
-                    style={{
-                      fontWeight: 'bold',
-                      color: 'GrayText',
-                      letterSpacing: 8,
-                      textTransform: 'uppercase'
-                    }}
-                  >
-                    Year
-                  </Text>
-                  <span>2021</span>
-                </ListItem>
-                <ListItem>
-                  <Meta>Stack</Meta>
-                  <span>Flutter, Tensorflow, Django</span>
-                </ListItem>
-                <ListItem>
-                  <Meta>Blog Post</Meta>
-                  <Link href="https://indonesia.googleblog.com/2020/09/empat-ide-terbaik-dari-peserta-bangkit.html">
-                    https://indonesia.googleblog.com/2020/09/empat-ide-terbaik-dari-peserta-bangkit.html
-                  </Link>
-                </ListItem>
-                <ListItem>
-                  <Meta>YouTube feature</Meta>
-                  <Link href="https://www.youtube.com/watch?v=L5XKrcvcSN4&t=2818s">
-                    https://www.youtube.com/watch?v=L5XKrcvcSN4&t=2818s
-                  </Link>
-                </ListItem>
-              </List>
-            </TitleSection>
-          </GridItem>
-          <GridItem>
-            <P>
+    <ProjectLayout
+      title="Ingredients Detector and Recipe Recommender"
+      details={[
+        <ProjectDetail key="year" title="Year" content="2021" />,
+        <ProjectDetail
+          key="stack"
+          title="Stack"
+          content="Flutter, Tensorflow, Django"
+        />,
+        <ProjectDetail
+          key="year"
+          title="Blog Post"
+          content={
+            <Link href="https://indonesia.googleblog.com/2020/09/empat-ide-terbaik-dari-peserta-bangkit.html">
+              https://indonesia.googleblog.com/2020/09/empat-ide-terbaik-dari-peserta-bangkit.html
+            </Link>
+          }
+        />
+      ]}
+      description="
               This multi-platform application recommend recipes based on
               ingredients you own by performing a detection algorithm on your
               image. I, along with a two teammates (Natasha and Rizvan)
@@ -71,12 +54,15 @@ const Project = () => {
               to a backend API built using the Django web framework and deployed
               on Google Cloud Platform. Our project was selected as one of the
               best projects of Bangkit Academy by Google 2020, featured on the
-              Google blog and Google Indonesia Youtube Channel.
-            </P>
-          </GridItem>
-        </Grid>
+              Google blog and Google Indonesia Youtube Channel."
+    >
+      <Flex direction={'column'} maxW="container.xl" alignItems={'center'}>
+        <Image
+          src="/images/ingredients-detector-recipe-recommender.png"
+          alt="Recipe"
+        />
       </Flex>
-    </Layout>
+    </ProjectLayout>
   )
 }
 

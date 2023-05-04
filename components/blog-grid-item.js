@@ -1,41 +1,39 @@
 import NextLink from 'next/link'
-import Image from 'next/image'
-import { Box, Text, LinkBox, LinkOverlay } from '@chakra-ui/react'
+import {
+  Box,
+  Text,
+  LinkBox,
+  LinkOverlay,
+  Heading,
+  AspectRatio,
+  Image
+} from '@chakra-ui/react'
 import { Global } from '@emotion/react'
+import { useSelector } from 'react-redux'
 
 export const BlogGridItem = ({ children, id, title, thumbnail }) => {
+  const color = useSelector(state => state.colorMode)
   return (
-    <Box textAlign="center">
-      <NextLink href={`/blog/${id}`} scroll={false}>
-        <LinkBox cursor="pointer">
-          <Image
-            src={thumbnail}
-            alt={id}
-            className="grid-item-thumbnail"
-            placeholder="blur"
-            blurDataURL="https://via.placeholder.com/150"
-            width={240}
-            height={140}
-            objectFit="cover"
-          />
-          <LinkOverlay target={'_blank'}>
-            <Text mt={2} fontSize={20}>
-              {title}
-            </Text>
-            <Text fontSize={14}>{children}</Text>
-          </LinkOverlay>
-        </LinkBox>
-      </NextLink>
+    <Box>
+      <Image src={thumbnail} alt={id} placeholder="blur" objectFit="cover" />
+      <Box
+        cursor="pointer"
+        display="flex"
+        flexDir={'column'}
+        alignItems="start"
+        justifyContent={'start'}
+        background={color.background_dark}
+        p={8}
+      >
+        <NextLink href={`/blog/${id}`} scroll={false}>
+          <Heading fontSize={'2rem'} textAlign="left">
+            {title}
+          </Heading>
+        </NextLink>
+        <Text mt={4} fontSize={'1.1rem'} textAlign="left">
+          {children}
+        </Text>
+      </Box>
     </Box>
   )
 }
-
-export const GridItemStyle = () => (
-  <Global
-    styles={`
-        .grid-item-thumbnail {
-          border-radius: 12px;
-        }
-      `}
-  />
-)

@@ -17,13 +17,16 @@ import {
   useColorModeValue,
   Button,
   useColorMode,
-  Divider
+  Divider,
+  useDisclosure
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setColor } from '../store/slices/colorModeSlice'
+import DesktopMenu from './DesktopMenu'
+import { useRouter } from 'next/router'
 
 const blink = keyframes`
   50% {
@@ -63,24 +66,28 @@ const colors = [
   {
     name: 'Cyberspace',
     background: '#181C18',
+    background_dark: '#131613',
     text: '#C0F7E1',
     accent: '#9578D3'
   },
   {
     name: 'Terminal',
     background: '#191A1B',
+    background_dark: '#141516',
     text: '#D2E9DF',
     accent: '#79A617'
   },
   {
     name: 'Paper',
     background: '#EEEEEE',
+    background_dark: '#DDDDDD',
     text: '#444444',
     accent: ' #444444'
   },
   {
     name: 'Serika Dark',
     background: '#323437',
+    background_dark: '#2C2E31',
     text: '#D1D0C5',
     accent: '#E2B72C'
   }
@@ -104,6 +111,9 @@ const Navbar = props => {
     }
   }, [dispatch])
 
+  const { isOpen, onToggle, onClose } = useDisclosure({ defaultIsOpen: true })
+  const router = useRouter()
+
   return (
     <Box
       position="fixed"
@@ -113,9 +123,10 @@ const Navbar = props => {
       zIndex={1}
       {...props}
     >
+      <DesktopMenu isOpen={isOpen} onClose={onClose} />
       <Container
         display="flex"
-        maxW="6xl"
+        maxW="100%"
         px={16}
         py={4}
         wrap="wrap"
@@ -127,40 +138,60 @@ const Navbar = props => {
             <Logo />
           </Heading>
         </Flex>
-        <Stack
-          direction={{ base: 'column', md: 'row' }}
-          display={{ base: 'none', md: 'flex' }}
-          width={{ base: 'full', md: 'auto' }}
-          alignItems="center"
-          flexGrow={1}
-          gap={4}
-          mt={{ base: 4, nmd: 0 }}
-        >
-          <LinkItem href="/blog" path={path}>
-            Blog
-          </LinkItem>
-        </Stack>
-
         <Box flex={1} flexDirection={'row'} align="right">
-          <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
-            <Menu>
-              <MenuButton
-                as={IconButton}
-                icon={<HamburgerIcon />}
-                variant="outline"
-                aria-label="Options"
-              ></MenuButton>
-              <MenuList>
-                <NextLink href="/blog" passHref>
-                  <MenuItem as={Link}>Blog</MenuItem>
-                </NextLink>
-              </MenuList>
-            </Menu>
-          </Box>
-          <Box ml={2} display={{ base: 'inline-block' }}>
+          <Button
+            border={0}
+            outline={0}
+            variant="link"
+            zIndex={2}
+            onClick={onToggle}
+          >
+            {isOpen ? 'Close' : 'Menu'}
+          </Button>
+          <Box ml={2} display={{ base: 'none', md: 'inline-block' }}>
             <Menu>
               <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
                 {color.name}
+              </MenuButton>
+              <MenuList>
+                {colors.map(color => (
+                  <MenuItem
+                    key={color.name}
+                    backgroundColor={color.background}
+                    textColor={color.accent}
+                    style={{
+                      transition: 'all .5s ease',
+                      WebkitTransition: 'all .5s ease',
+                      MozTransition: 'all .5s ease'
+                    }}
+                    onClick={() => onClickHandler(color)}
+                  >
+                    {color.name}
+                  </MenuItem>
+                ))}
+              </MenuList>
+            </Menu>
+          </Box>
+          <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
+            <Menu>
+              <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                <Box
+                  position={'relative'}
+                  borderRadius={'4px'}
+                  w="16px"
+                  h="16px"
+                  bg={color.accent}
+                >
+                  <Box
+                    position={'absolute'}
+                    left={1}
+                    top={1}
+                    borderRadius={'2px'}
+                    w="8px"
+                    h="8px"
+                    bg={color.text}
+                  />
+                </Box>
               </MenuButton>
               <MenuList>
                 {colors.map(color => (
