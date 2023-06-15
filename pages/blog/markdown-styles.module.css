@@ -14,21 +14,21 @@
 }
 
 .markdown h1 {
-  @apply text-4xl mt-12 mb-4 leading-snug font-bold;
+  @apply text-4xl mb-4 leading-snug font-bold;
 }
 
 .markdown h2 {
-  @apply text-3xl mt-12 mb-4 leading-snug font-bold;
+  @apply text-3xl mb-4 leading-snug font-bold;
 }
 
 .markdown h3 {
-  @apply text-2xl mt-8 mb-4 leading-snug;
+  @apply text-2xl mb-4 leading-snug;
 }
 
 .markdown h4 {
-  @apply text-xl mt-8 mb-4 leading-snug;
+  @apply text-xl mb-4 leading-snug;
 }
 
 .markdown h5 {
-  @apply text-lg mt-8 mb-4 leading-snug;
+  @apply text-lg mb-4 leading-snug;
 }

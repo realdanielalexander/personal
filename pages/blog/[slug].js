@@ -22,12 +22,12 @@ const Post = ({ post, preview }) => {
   return (
     <Layout preview={preview}>
       <Container>
-        <Heading />
+        {/* <Heading /> */}
         {router.isFallback ? (
           <Text>Loading…</Text>
         ) : (
           <>
-            <Box className="mb-32">
+            <Box className="mb-32" pt={16}>
               <Head>{/* <Text as={'h1'}>{post.title}</Text> */}</Head>
               <Text>{post.coverImage}</Text>
               <Text>{post.date}</Text>
@@ -38,7 +38,7 @@ const Post = ({ post, preview }) => {
                 date={post.date}
                 author={post.author}
               /> */}
-              <div className="max-w-2xl mx-auto">
+              <div className="max-w-2xl mt-12 mx-auto">
                 <div
                   className={markdownStyles['markdown']}
                   dangerouslySetInnerHTML={{ __html: post.content }}

@@ -24,9 +24,7 @@ const Main = ({ children, router }) => {
         <title>Daniel Alexander - Homepage</title>
       </Head>
       <Navbar path={router.asPath}></Navbar>
-      <Container maxW="container.xl" pt={14}>
-        {children}
-      </Container>
+      <Container maxW="container.xl">{children}</Container>
     </Box>
   )
 }

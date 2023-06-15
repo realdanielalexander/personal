@@ -1,5 +1,6 @@
 import { extendTheme } from '@chakra-ui/react'
 import { mode } from '@chakra-ui/theme-tools'
+import { useSelector } from 'react-redux'
 
 const styles = {
   global: props => ({
@@ -18,7 +19,6 @@ const components = {
         textUnderlineOffset: 6,
         textDecorationColor: '#525252',
         textDecorationThickness: 4,
-        marginTop: 3,
         marginBottom: 4
       }
     }
@@ -37,7 +37,7 @@ const components = {
 }
 
 const fonts = {
-  heading: "'Roboto Mono'"
+  heading: "'Roboto'"
 }
 
 const colors = {

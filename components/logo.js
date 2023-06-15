@@ -28,7 +28,7 @@ const Logo = () => {
           fontWeight="bold"
           ml={4}
         >
-          dalxndr
+          daniel alexander
         </Text>
       </a>
     </Link>

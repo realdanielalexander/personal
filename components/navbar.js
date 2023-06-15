@@ -16,13 +16,17 @@ import {
   keyframes,
   useColorModeValue,
   Button,
-  useColorMode
+  useColorMode,
+  Divider,
+  useDisclosure
 } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setColor } from '../store/slices/colorModeSlice'
+import DesktopMenu from './DesktopMenu'
+import { useRouter } from 'next/router'
 
 const blink = keyframes`
   50% {
@@ -58,40 +62,20 @@ const LinkItem = ({ href, path, children }) => {
   )
 }
 
-const colors = [
-  {
-    name: 'Cyberspace',
-    background: '#181C18',
-    text: '#C0F7E1',
-    accent: '#9578D3'
-  },
-  {
-    name: 'Terminal',
-    background: '#191A1B',
-    text: '#D2E9DF',
-    accent: '#79A617'
-  },
-  {
-    name: 'Paper',
-    background: '#EEEEEE',
-    text: '#444444',
-    accent: ' #444444'
-  },
-  {
-    name: 'Serika Dark',
-    background: '#323437',
-    text: '#D1D0C5',
-    accent: '#E2B72C'
-  }
-]
-
 const Navbar = props => {
   const { path } = props
 
-  const color = useSelector(state => state.colorMode)
+  const { isOpen, onToggle, onClose } = useDisclosure()
+  const router = useRouter()
   const dispatch = useDispatch()
 
-  const onClickHandler = color => dispatch(setColor(color))
+  useEffect(() => {
+    const colorMode = window.localStorage.getItem('colorMode')
+    if (colorMode) {
+      dispatch(setColor(JSON.parse(colorMode)))
+    }
+  }, [dispatch])
+
   return (
     <Box
       position="fixed"
@@ -101,10 +85,12 @@ const Navbar = props => {
       zIndex={1}
       {...props}
     >
+      <DesktopMenu isOpen={isOpen} onClose={onClose} />
       <Container
         display="flex"
-        p={2}
-        maxW="container.md"
+        maxW="100%"
+        px={16}
+        py={4}
         wrap="wrap"
         align="center"
         justify="space-between"
@@ -114,61 +100,17 @@ const Navbar = props => {
             <Logo />
           </Heading>
         </Flex>
-        <Stack
-          direction={{ base: 'column', md: 'row' }}
-          display={{ base: 'none', md: 'flex' }}
-          width={{ base: 'full', md: 'auto' }}
-          alignItems="center"
-          flexGrow={1}
-          gap={4}
-          mt={{ base: 4, nmd: 0 }}
-        >
-          <LinkItem href="/blog" path={path}>
-            Blog
-          </LinkItem>
-        </Stack>
-
         <Box flex={1} flexDirection={'row'} align="right">
-          <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
-            <Menu>
-              <MenuButton
-                as={IconButton}
-                icon={<HamburgerIcon />}
-                variant="outline"
-                aria-label="Options"
-              ></MenuButton>
-              <MenuList>
-                <NextLink href="/blog" passHref>
-                  <MenuItem as={Link}>Blog</MenuItem>
-                </NextLink>
-              </MenuList>
-            </Menu>
-          </Box>
-        </Box>
-
-        <Box>
-          <Menu>
-            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-              {color.name}
-            </MenuButton>
-            <MenuList>
-              {colors.map(color => (
-                <MenuItem
-                  key={color.name}
-                  backgroundColor={color.background}
-                  textColor={color.accent}
-                  style={{
-                    transition: 'all .5s ease',
-                    WebkitTransition: 'all .5s ease',
-                    MozTransition: 'all .5s ease'
-                  }}
-                  onClick={() => onClickHandler(color)}
-                >
-                  {color.name}
-                </MenuItem>
-              ))}
-            </MenuList>
-          </Menu>
+          <Button
+            border={0}
+            outline={0}
+            variant="link"
+            zIndex={2}
+            mt={2}
+            onClick={onToggle}
+          >
+            {isOpen ? 'Close' : 'Menu'}
+          </Button>
         </Box>
       </Container>
     </Box>

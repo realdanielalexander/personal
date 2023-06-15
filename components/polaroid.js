@@ -14,7 +14,6 @@ const photos = [
 
 const PolaroidCaption = styled.p`
   font-family: Caveat;
-
   color: black;
   font-size: 1.5em;
   text-align: center;

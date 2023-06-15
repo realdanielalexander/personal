@@ -10,7 +10,9 @@ import {
   IconButton,
   SimpleGrid,
   Text,
-  Flex
+  Flex,
+  VStack,
+  StackDivider
 } from '@chakra-ui/react'
 import {
   IoLogoGithub,
@@ -19,6 +21,7 @@ import {
   IoLogoYoutube,
   IoMdMail
 } from 'react-icons/io'
+import P from '../components/paragraph'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import Layout from '../components/layouts/article'
 import Logo from '../components/logo'
@@ -33,32 +36,21 @@ import thumbMillennial from '../public/images/millenialfashion.png'
 import { BioDescription, BioSection, BioYear } from '../components/experiences'
 import { useSelector } from 'react-redux'
 import React from 'react'
+import ProjectInline from '../components/ProjectInline'
+import StyledBox from '../components/HeadingSection'
 
 const icons = [
   {
-    label: 'Github Button',
-    logo: IoLogoGithub,
+    label: 'Resume',
     link: 'https://github.com/realdanielalexander'
   },
   {
-    label: 'LinkedIn Button',
-    logo: IoLogoLinkedin,
+    label: 'LinkedIn',
     link: 'https://www.linkedin.com/in/realdanielalexander/'
   },
   {
-    label: 'Instagram Button',
-    logo: IoLogoInstagram,
-    link: 'https://github.com/realdanielalexander'
-  },
-  {
-    label: 'YouTube Button',
-    logo: IoLogoYoutube,
-    link: 'https://www.youtube.com/channel/UCiywQf9i39QRnhLPdduVNUw'
-  },
-  {
-    label: 'Mail Button',
-    logo: IoMdMail,
-    link: 'mailto:alexdan@sas.upenn.edu'
+    label: 'Instagram',
+    link: 'https://instagram.com/heydanzo'
   }
 ]
 
@@ -67,43 +59,51 @@ const Page = () => {
   const colorMode = useSelector(state => state.colorMode)
   return (
     <Layout>
-      {/* Notification box */}
-      {/* <Box
-          borderRadius="lg"
-          bg={useColorModeValue('whiteAlpha.600', 'whiteAlpha.200')}
-          p={4}
-          my={6}
-        >
-          Welcome to my personal page!
-        </Box> */}
-      <Flex
+      <Section
         h={'100vh'}
         flexDirection={'column'}
         justifyContent={'center'}
-        flexGrow={1}
+        position="relative"
       >
-        <Box>
-          <Heading as="h2" variant="page-title" color={colorMode.accent}>
-            Hi! I&apos;m <Text as="span">Daniel Alexander</Text>
-          </Heading>
-          <Text>
-            A software engineer with 4+ years in front end development. I write,
-            take pictures, and play music in my spare time.
+        <StyledBox maxW="2xl" position={'absolute'} bottom={16}>
+          <Text
+            style={{
+              fontSize: '1.5rem',
+              fontWeight: 'bold',
+              color: 'GrayText',
+              letterSpacing: 8,
+              textTransform: 'uppercase'
+            }}
+          >
+            Daniel Alexander
           </Text>
+          <Heading
+            fontSize={{ base: '2rem', md: '4rem' }}
+            as="h1"
+            variant="page-title"
+            color={colorMode.accent}
+          >
+            <Text>Computer Vision and Graphics Researcher</Text>
+          </Heading>
+          <P>
+            I&apos;m currently looking for research and academic opportunities
+            and I have published a{' '}
+            <Link href="https://ieeexplore.ieee.org/document/9972006">
+              paper
+            </Link>{' '}
+            on computer vision in the IEEE Xplore. In the past five years, I
+            have gathered experience in front-end programming, computer
+            graphics, and machine learning.
+          </P>
           <Box display="flex" gap={'8'} flexGrow={1} mt={4}>
             {icons.map(icon => (
               <Link key={icon.label} href={icon.link} isExternal>
-                <IconButton
-                  href=""
-                  aria-label={icon.label}
-                  icon={React.createElement(icon.logo)}
-                  color={colorMode.text}
-                />
+                {icon.label}
               </Link>
             ))}
           </Box>
-        </Box>
-      </Flex>
+        </StyledBox>
+      </Section>
       <Section delay={0.1}>
         <Heading as="h3" variant="section-title">
           Experiences
@@ -155,8 +155,8 @@ const Page = () => {
           Projects
         </Heading>
         <Container maxW="100%" mt={8} mx={0}>
-          <SimpleGrid columns={[1, 2, 2]} gap={4}>
-            <ProjectGridItem
+          <VStack divider={<StackDivider />} spacing={4} align={'stretch'}>
+            <ProjectInline
               id="recipe"
               title="Ingredients Detector and Recipe Recommender"
               thumbnail={thumbRecipe}
@@ -164,29 +164,47 @@ const Page = () => {
               A multi-platform application that recommend recipes based on
               ingredients you own by performing a detection algorithm on your
               image
-            </ProjectGridItem>
-            <ProjectGridItem
+            </ProjectInline>
+            <ProjectInline
               id="steganography"
               title="Least Significant Bit Steganography"
               thumbnail={thumbSteganography}
             >
               Hides your message text within an image
-            </ProjectGridItem>
-            <ProjectGridItem
+            </ProjectInline>
+            <ProjectInline
               id="game"
               title="iOS Game Library App"
               thumbnail={thumbGame}
             >
               iOS app to browse video games and save them into your favorites.
-            </ProjectGridItem>
-            <ProjectGridItem
+            </ProjectInline>
+            <ProjectInline
               id="millennial"
               title="Millennial Fashion"
               thumbnail={thumbMillennial}
             >
               Demonstrated end-to-end software engineering practices
-            </ProjectGridItem>
-          </SimpleGrid>
+            </ProjectInline>
+          </VStack>
+        </Container>
+      </Section>
+      <Section delay={0.2}>
+        <Heading as="h3" variant="section-title">
+          Publications
+        </Heading>
+        <Container maxW="100%" mt={8} mx={0}>
+          <VStack divider={<StackDivider />} spacing={4} align={'stretch'}>
+            <ProjectInline
+              id="application-of-convolutional-neural-network-for-semantic-segmentation-of-bandung-urban-scenes"
+              title="Application of Convolutional Neural Network for Semantic
+              Segmentation of Bandung Urban Scenes"
+              thumbnail={thumbRecipe}
+            >
+              Application of Convolutional Neural Network for Semantic
+              Segmentation of Bandung Urban Scenes
+            </ProjectInline>
+          </VStack>
         </Container>
       </Section>
     </Layout>

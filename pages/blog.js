@@ -32,39 +32,26 @@ import { getSortedPostsData } from '../libs/posts'
 const Blog = ({ allPostsData }) => {
   return (
     <Layout>
-      <Container maxW="container.xl" minH={'100vh'}>
-        <Section delay={0.1}>
-          <Heading as="h3" variant="section-title">
-            Posts
-          </Heading>
-
-          <Box
-            borderRadius="lg"
-            bg={useColorModeValue('whiteAlpha.600', 'whiteAlpha.200')}
-            p={4}
-            my={6}
-          >
-            Here, I try to document my thoughts and learning processes. I
-            believe that becoming a better version of myself require constant
-            reflection of the things that I do. I hope you find these articles
-            helpful in one way or another. :)
-          </Box>
-          <Container maxW="100%" mt={8} mx={0}>
-            <SimpleGrid columns={[1, 2, 2]} gap={4}>
-              {allPostsData.map(({ excerpt, slug, id, title, thumbnail }) => (
-                <BlogGridItem
-                  key={id}
-                  id={slug}
-                  title={title}
-                  thumbnail={thumbnail}
-                >
-                  {excerpt}
-                </BlogGridItem>
-              ))}
-            </SimpleGrid>
-          </Container>
-        </Section>
-      </Container>
+      <Section
+        minH={'100vh'}
+        flexDirection={'column'}
+        justifyContent={'center'}
+      >
+        <Box maxW="100%" pt={24}>
+          <SimpleGrid columns={[1, 1, 2, 2, 3]} gap={8}>
+            {allPostsData.map(({ excerpt, slug, id, title, thumbnail }) => (
+              <BlogGridItem
+                key={id}
+                id={slug}
+                title={title}
+                thumbnail={thumbnail}
+              >
+                {excerpt}
+              </BlogGridItem>
+            ))}
+          </SimpleGrid>
+        </Box>
+      </Section>
     </Layout>
   )
 }
