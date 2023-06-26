@@ -65,7 +65,7 @@ const DesktopMenu = ({ isOpen, onClose }) => {
           overflow={'hidden'}
           background={color.background}
           color={colorMode.text}
-          zIndex={1}
+          zIndex={'999'}
           position={'fixed'}
         >
           <Box flex={1} flexDirection={'row'} align="right">

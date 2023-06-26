@@ -42,6 +42,10 @@ import { useState, useEffect } from 'react'
 
 const icons = [
   {
+    label: 'Email',
+    link: 'mailto:realdanielalexander@gmail.com'
+  },
+  {
     label: 'Resume',
     link: 'https://github.com/realdanielalexander'
   },
@@ -95,7 +99,13 @@ const Page = () => {
         justifyContent={'center'}
         position="relative"
       >
-        <StyledBox maxW="2xl" position={'absolute'} bottom={16}>
+        <StyledBox
+          marginTop={16}
+          zIndex={0}
+          maxW="2xl"
+          position={'absolute'}
+          bottom={16}
+        >
           <Text
             style={{
               fontSize: '1.5rem',
@@ -132,6 +142,10 @@ const Page = () => {
               </Link>
             ))}
           </Box>
+          <Text>
+            Please reach out to me through email
+            realdanielalexander(at)gmail(dot)com
+          </Text>
         </StyledBox>
       </Section>
       <Section delay={0.1} display="grid">
@@ -169,6 +183,16 @@ const Page = () => {
             Studied abroad at the University of Pennsylvania, International
             Guest Student Program under the Indonesian International Student
             Mobility Program (IISMA) scholarship.
+          </Text>
+          <Text>Aug 2020</Text>
+          <Text>
+            Our capstone project Ingredients Detector and Recipe Recommender was
+            awarded best capstone project in Google Bangkit Academy.
+          </Text>
+          <Text>May 2020</Text>
+          <Text>
+            Started my role as a research assistant at the Web Intelligence and
+            Data Mining Lab, National Central University Taiwan.
           </Text>
         </Box>
       </Section>

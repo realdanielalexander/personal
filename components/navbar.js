@@ -105,7 +105,7 @@ const Navbar = props => {
             border={0}
             outline={0}
             variant="link"
-            zIndex={2}
+            zIndex={9999}
             mt={2}
             onClick={onToggle}
           >
