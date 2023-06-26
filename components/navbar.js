@@ -77,14 +77,7 @@ const Navbar = props => {
   }, [dispatch])
 
   return (
-    <Box
-      position="fixed"
-      as="nav"
-      w="100%"
-      style={{ backdropFilter: 'blur(10px)' }}
-      zIndex={1}
-      {...props}
-    >
+    <Box position="fixed" as="nav" w="100%" zIndex={1} {...props}>
       <DesktopMenu isOpen={isOpen} onClose={onClose} />
       <Container
         display="flex"

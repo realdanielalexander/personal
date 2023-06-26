@@ -17,14 +17,13 @@ const Main = ({ children, router }) => {
         MozTransition: 'all .5s ease'
       }}
       as="main"
-      pb={8}
     >
       <Head>
         <meta name="viewport" content="width=device-width, initial scale=1" />
         <title>Daniel Alexander - Homepage</title>
       </Head>
       <Navbar path={router.asPath}></Navbar>
-      <Container maxW="container.xl">{children}</Container>
+      <Container maxW="container.md">{children}</Container>
     </Box>
   )
 }
