@@ -38,6 +38,7 @@ import { useSelector } from 'react-redux'
 import React from 'react'
 import ProjectInline from '../components/ProjectInline'
 import StyledBox from '../components/HeadingSection'
+import { useState, useEffect } from 'react'
 
 const icons = [
   {
@@ -54,10 +55,39 @@ const icons = [
   }
 ]
 
+const Loader = ({ setLoading }) => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, 4000)
+
+    return () => {
+      clearTimeout(timer)
+    }
+  })
+
+  return (
+    <Layout>
+      <Box
+        h={'100vh'}
+        display={'flex'}
+        flexDirection={'column'}
+        justifyContent={'center'}
+        alignItems={'center'}
+      >
+        <Text>Loading awesomeness...</Text>
+      </Box>
+    </Layout>
+  )
+}
+
 const Page = () => {
   // Set color scheme
   const colorMode = useSelector(state => state.colorMode)
-  return (
+  const [loading, setLoading] = useState(true)
+  return loading ? (
+    <Loader setLoading={setLoading} />
+  ) : (
     <Layout>
       <Section
         h={'100vh'}
@@ -78,7 +108,7 @@ const Page = () => {
             Daniel Alexander
           </Text>
           <Heading
-            fontSize={{ base: '2rem', md: '4rem' }}
+            fontSize={{ base: '4rem' }}
             as="h1"
             variant="page-title"
             color={colorMode.accent}
@@ -104,108 +134,43 @@ const Page = () => {
           </Box>
         </StyledBox>
       </Section>
-      <Section delay={0.1}>
+      <Section delay={0.1} display="grid">
         <Heading as="h3" variant="section-title">
-          Experiences
+          News
         </Heading>
-        <BioSection>
-          <BioYear>
-            July 2022 — December2022: Junior Software Engineer, Shopee |
-            Jakarta, Indonesia
-          </BioYear>
-          <BioDescription>
-            Went through six months of training program for full-stack web
-            development
-          </BioDescription>
-        </BioSection>
-        <BioSection>
-          <BioYear>
-            2018 — 2022 : Institut Teknologi Harapan Bangsa | Bandung, Indonesia
-          </BioYear>
-          <BioDescription>Bachelor&apos;s Degree in Informatics</BioDescription>
-        </BioSection>
-        <BioSection>
-          <BioYear>
-            August 2021 — December 2021: University of Pennsylvania |
-            Philadelphia, PA
-          </BioYear>
-          <BioDescription>
-            Study Abroad, International Guest Student Program
-          </BioDescription>
-        </BioSection>
-        <BioSection>
-          <BioYear>January 2021 — July 2021: Bangkit Academy</BioYear>
-          <BioDescription>
-            Machine Learning Academy led by Google, Tokopedia, Traveloka, and
-            Gojek
-          </BioDescription>
-        </BioSection>
-        <BioSection>
-          <BioYear>
-            May 2020 - Aug 2020: National Central University | Taoyuan City,
-            Taiwan
-          </BioYear>
-          <BioDescription>
-            Research Assistant at Web Intelligence and Data Mining (WIDM) Lab
-          </BioDescription>
-        </BioSection>
-      </Section>
-      <Section delay={0.2}>
-        <Heading as="h3" variant="section-title">
-          Projects
-        </Heading>
-        <Container maxW="100%" mt={8} mx={0}>
-          <VStack divider={<StackDivider />} spacing={4} align={'stretch'}>
-            <ProjectInline
-              id="recipe"
-              title="Ingredients Detector and Recipe Recommender"
-              thumbnail={thumbRecipe}
-            >
-              A multi-platform application that recommend recipes based on
-              ingredients you own by performing a detection algorithm on your
-              image
-            </ProjectInline>
-            <ProjectInline
-              id="steganography"
-              title="Least Significant Bit Steganography"
-              thumbnail={thumbSteganography}
-            >
-              Hides your message text within an image
-            </ProjectInline>
-            <ProjectInline
-              id="game"
-              title="iOS Game Library App"
-              thumbnail={thumbGame}
-            >
-              iOS app to browse video games and save them into your favorites.
-            </ProjectInline>
-            <ProjectInline
-              id="millennial"
-              title="Millennial Fashion"
-              thumbnail={thumbMillennial}
-            >
-              Demonstrated end-to-end software engineering practices
-            </ProjectInline>
-          </VStack>
-        </Container>
-      </Section>
-      <Section delay={0.2}>
-        <Heading as="h3" variant="section-title">
-          Publications
-        </Heading>
-        <Container maxW="100%" mt={8} mx={0}>
-          <VStack divider={<StackDivider />} spacing={4} align={'stretch'}>
-            <ProjectInline
-              id="application-of-convolutional-neural-network-for-semantic-segmentation-of-bandung-urban-scenes"
-              title="Application of Convolutional Neural Network for Semantic
-              Segmentation of Bandung Urban Scenes"
-              thumbnail={thumbRecipe}
-            >
+        <Box display={'grid'} gridTemplateColumns={'100px auto'}>
+          <Text>Jan, 2023</Text>
+          <Text>
+            Started my role as a Frontend Engineer in the Shopee Indonesia
+            Payment Processing (SIPP).
+          </Text>
+          <Text>Nov, 2023</Text>
+          <Text>
+            Published and presented our paper{' '}
+            <Link href="https://ieeexplore.ieee.org/document/9972006">
               Application of Convolutional Neural Network for Semantic
               Segmentation of Bandung Urban Scenes
-            </ProjectInline>
-          </VStack>
-        </Container>
+            </Link>{' '}
+            in the 2023 IEEE International Conference on Data and Software
+            Engineering (ICoDSE).
+          </Text>
+          <Text>Aug, 2022</Text>
+          <Text>
+            Started my role as a Junior Engineer at Shopee, received full
+            training on software engineering.
+          </Text>
+          <Text>Jul, 2022</Text>
+          <Text>
+            Graduated with honors (best overall GPA) from Institut Teknologi
+            Harapan Bangsa majoring in Informatics.
+          </Text>
+          <Text>Aug 2021</Text>
+          <Text>
+            Studied abroad at the University of Pennsylvania, International
+            Guest Student Program under the Indonesian International Student
+            Mobility Program (IISMA) scholarship.
+          </Text>
+        </Box>
       </Section>
     </Layout>
   )
