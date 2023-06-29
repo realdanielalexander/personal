@@ -21,17 +21,19 @@ const Post = ({ post, preview }) => {
   }
   return (
     <Layout preview={preview}>
-      <Container>
+      <Box>
         {/* <Heading /> */}
         {router.isFallback ? (
           <Text>Loading…</Text>
         ) : (
           <>
-            <Box className="mb-32" pt={16}>
-              <Head>{/* <Text as={'h1'}>{post.title}</Text> */}</Head>
-              <Text>{post.coverImage}</Text>
-              <Text>{post.date}</Text>
-              <Text>{post.author}</Text>
+            <Head>
+              <title>Daniel Alexander - {post.title}</title>
+            </Head>
+            <Box className="mb-32">
+              <Text as={'h1'} fontSize="2.5rem" fontWeight="bold">
+                {post.title}
+              </Text>
               {/* <PostHeader
                 title={post.title}
                 coverImage={post.coverImage}
@@ -48,7 +50,7 @@ const Post = ({ post, preview }) => {
             </Box>
           </>
         )}
-      </Container>
+      </Box>
     </Layout>
   )
 }

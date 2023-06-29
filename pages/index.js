@@ -4,7 +4,6 @@ import {
   Container,
   Heading,
   Image,
-  Link,
   Button,
   useColorModeValue,
   IconButton,
@@ -28,6 +27,7 @@ import Logo from '../components/logo'
 import Navbar from '../components/navbar'
 import Section from '../components/section'
 import Paragraph from '../components/paragraph'
+import StyledLink from '../components/StyledLink'
 import { ProjectGridItem } from '../components/grid-item'
 import thumbRecipe from '../public/images/ingredients-detector-recipe-recommender.png'
 import thumbSteganography from '../public/images/steganography.png'
@@ -38,8 +38,13 @@ import { useSelector } from 'react-redux'
 import React from 'react'
 import ProjectInline from '../components/ProjectInline'
 import StyledBox from '../components/HeadingSection'
+import { useState, useEffect } from 'react'
 
 const icons = [
+  {
+    label: 'Email',
+    link: 'mailto:realdanielalexander@gmail.com'
+  },
   {
     label: 'Resume',
     link: 'https://github.com/realdanielalexander'
@@ -54,158 +59,141 @@ const icons = [
   }
 ]
 
+const Loader = ({ setLoading }) => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, 4000)
+
+    return () => {
+      clearTimeout(timer)
+    }
+  })
+
+  return (
+    <Layout>
+      <Box
+        h={'100vh'}
+        display={'flex'}
+        flexDirection={'column'}
+        justifyContent={'center'}
+        alignItems={'center'}
+      >
+        <Text>Loading awesomeness...</Text>
+      </Box>
+    </Layout>
+  )
+}
+
 const Page = () => {
   // Set color scheme
   const colorMode = useSelector(state => state.colorMode)
+  const [loading, setLoading] = useState(true)
   return (
     <Layout>
-      <Section
-        h={'100vh'}
-        flexDirection={'column'}
-        justifyContent={'center'}
-        position="relative"
-      >
-        <StyledBox maxW="2xl" position={'absolute'} bottom={16}>
-          <Text
-            style={{
-              fontSize: '1.5rem',
-              fontWeight: 'bold',
-              color: 'GrayText',
-              letterSpacing: 8,
-              textTransform: 'uppercase'
-            }}
-          >
+      <Section display="flex" alignItems="center" flexDirection={'row'}>
+        <Box display="flex" flexDirection={'column'}>
+          <Text as="h1" fontSize="2rem" fontWeight="bold">
             Daniel Alexander
           </Text>
-          <Heading
-            fontSize={{ base: '2rem', md: '4rem' }}
-            as="h1"
-            variant="page-title"
-            color={colorMode.accent}
+          <Box
+            display="flex"
+            flexDirection={{ base: 'column-reverse', md: 'row' }}
+            gap={8}
           >
-            <Text>Computer Vision and Graphics Researcher</Text>
-          </Heading>
-          <P>
-            I&apos;m currently looking for research and academic opportunities
-            and I have published a{' '}
-            <Link href="https://ieeexplore.ieee.org/document/9972006">
-              paper
-            </Link>{' '}
-            on computer vision in the IEEE Xplore. In the past five years, I
-            have gathered experience in front-end programming, computer
-            graphics, and machine learning.
-          </P>
-          <Box display="flex" gap={'8'} flexGrow={1} mt={4}>
-            {icons.map(icon => (
-              <Link key={icon.label} href={icon.link} isExternal>
-                {icon.label}
-              </Link>
-            ))}
+            <Box>
+              <Text>Hello! I&apos;m Daniel 😄</Text>
+              <Text>
+                I&apos;m currently looking for research and academic
+                opportunities. My research interest is in Artificial
+                Intelligence, Computer Vision, and Machine Learning for
+                automation and sensing. In the past five years, I have gathered
+                experience in front-end programming, computer graphics, and
+                machine learning.
+              </Text>
+              {/* contact section */}
+              <Box
+                display="flex"
+                flexDirection={'column'}
+                alignItems={'center'}
+              >
+                <Box display="flex" gap={'8'} mt={4}>
+                  {icons.map(icon => (
+                    <StyledLink key={icon.label} href={icon.link} isExternal>
+                      {icon.label}
+                    </StyledLink>
+                  ))}
+                </Box>
+                <Text marginTop={4} textAlign={'center'}>
+                  Please reach out to me through email
+                  realdanielalexander(at)gmail(dot)com
+                </Text>
+              </Box>
+            </Box>
+
+            <Box
+              alignSelf={'start'}
+              marginTop={4}
+              h="100%"
+              maxW={{ md: '200px' }}
+            >
+              <Image
+                objectFit={'cover'}
+                src="/images/profile1.jpeg"
+                alt="profile"
+                borderRadius={6400}
+              />
+            </Box>
           </Box>
-        </StyledBox>
+        </Box>
       </Section>
-      <Section delay={0.1}>
+      <Section delay={0.1} marginTop={16} display="flex" flexDirection="column">
         <Heading as="h3" variant="section-title">
-          Experiences
+          What I&apos;ve been up to
         </Heading>
-        <BioSection>
-          <BioYear>
-            July 2022 — December2022: Junior Software Engineer, Shopee |
-            Jakarta, Indonesia
-          </BioYear>
-          <BioDescription>
-            Went through six months of training program for full-stack web
-            development
-          </BioDescription>
-        </BioSection>
-        <BioSection>
-          <BioYear>
-            2018 — 2022 : Institut Teknologi Harapan Bangsa | Bandung, Indonesia
-          </BioYear>
-          <BioDescription>Bachelor&apos;s Degree in Informatics</BioDescription>
-        </BioSection>
-        <BioSection>
-          <BioYear>
-            August 2021 — December 2021: University of Pennsylvania |
-            Philadelphia, PA
-          </BioYear>
-          <BioDescription>
-            Study Abroad, International Guest Student Program
-          </BioDescription>
-        </BioSection>
-        <BioSection>
-          <BioYear>January 2021 — July 2021: Bangkit Academy</BioYear>
-          <BioDescription>
-            Machine Learning Academy led by Google, Tokopedia, Traveloka, and
-            Gojek
-          </BioDescription>
-        </BioSection>
-        <BioSection>
-          <BioYear>
-            May 2020 - Aug 2020: National Central University | Taoyuan City,
-            Taiwan
-          </BioYear>
-          <BioDescription>
-            Research Assistant at Web Intelligence and Data Mining (WIDM) Lab
-          </BioDescription>
-        </BioSection>
-      </Section>
-      <Section delay={0.2}>
-        <Heading as="h3" variant="section-title">
-          Projects
-        </Heading>
-        <Container maxW="100%" mt={8} mx={0}>
-          <VStack divider={<StackDivider />} spacing={4} align={'stretch'}>
-            <ProjectInline
-              id="recipe"
-              title="Ingredients Detector and Recipe Recommender"
-              thumbnail={thumbRecipe}
-            >
-              A multi-platform application that recommend recipes based on
-              ingredients you own by performing a detection algorithm on your
-              image
-            </ProjectInline>
-            <ProjectInline
-              id="steganography"
-              title="Least Significant Bit Steganography"
-              thumbnail={thumbSteganography}
-            >
-              Hides your message text within an image
-            </ProjectInline>
-            <ProjectInline
-              id="game"
-              title="iOS Game Library App"
-              thumbnail={thumbGame}
-            >
-              iOS app to browse video games and save them into your favorites.
-            </ProjectInline>
-            <ProjectInline
-              id="millennial"
-              title="Millennial Fashion"
-              thumbnail={thumbMillennial}
-            >
-              Demonstrated end-to-end software engineering practices
-            </ProjectInline>
-          </VStack>
-        </Container>
-      </Section>
-      <Section delay={0.2}>
-        <Heading as="h3" variant="section-title">
-          Publications
-        </Heading>
-        <Container maxW="100%" mt={8} mx={0}>
-          <VStack divider={<StackDivider />} spacing={4} align={'stretch'}>
-            <ProjectInline
-              id="application-of-convolutional-neural-network-for-semantic-segmentation-of-bandung-urban-scenes"
-              title="Application of Convolutional Neural Network for Semantic
-              Segmentation of Bandung Urban Scenes"
-              thumbnail={thumbRecipe}
-            >
+        <Box display={'grid'} marginTop={4} gridTemplateColumns={'100px auto'}>
+          <Text>Jan, 2023</Text>
+          <Text>
+            Started my role as a Frontend Engineer in the Shopee Indonesia
+            Payment Processing (SIPP) 🛍️
+          </Text>
+          <Text>Nov, 2023</Text>
+          <Text>
+            Published and presented our paper{' '}
+            <StyledLink href="https://ieeexplore.ieee.org/document/9972006">
               Application of Convolutional Neural Network for Semantic
               Segmentation of Bandung Urban Scenes
-            </ProjectInline>
-          </VStack>
-        </Container>
+            </StyledLink>{' '}
+            in the 2023 IEEE International Conference on Data and Software
+            Engineering (ICoDSE) 📄
+          </Text>
+          <Text>Aug, 2022</Text>
+          <Text>
+            Started my role as a Junior Engineer at Shopee, received full
+            training on software engineering 💻
+          </Text>
+          <Text>Jul, 2022</Text>
+          <Text>
+            Graduated with honors (best overall GPA) from Institut Teknologi
+            Harapan Bangsa majoring in Informatics 🎓
+          </Text>
+          <Text>Aug 2021</Text>
+          <Text>
+            Studied abroad at the University of Pennsylvania, International
+            Guest Student Program under the Indonesian International Student
+            Mobility Program (IISMA) scholarship 🇺🇸
+          </Text>
+          <Text>Aug 2020</Text>
+          <Text>
+            Our capstone project Ingredients Detector and Recipe Recommender was
+            awarded best capstone project in Google Bangkit Academy 🍳
+          </Text>
+          <Text>May 2020</Text>
+          <Text>
+            Started my role as a research assistant at the Web Intelligence and
+            Data Mining Lab, National Central University Taiwan 🔬
+          </Text>
+        </Box>
       </Section>
     </Layout>
   )

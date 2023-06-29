@@ -8,7 +8,9 @@ import {
   Button,
   useColorModeValue,
   IconButton,
-  SimpleGrid
+  SimpleGrid,
+  Tag,
+  Text
 } from '@chakra-ui/react'
 import {
   IoLogoGithub,
@@ -28,17 +30,24 @@ import { BioDescription, BioSection, BioYear } from '../components/experiences'
 import { BlogGridItem } from '../components/blog-grid-item'
 
 import { getSortedPostsData } from '../libs/posts'
+import Head from 'next/head'
 
 const Blog = ({ allPostsData }) => {
   return (
     <Layout>
-      <Section
-        minH={'100vh'}
-        flexDirection={'column'}
-        justifyContent={'center'}
-      >
-        <Box maxW="100%" pt={24}>
-          <SimpleGrid columns={[1, 1, 2, 2, 3]} gap={8}>
+      <Head>
+        <title>Daniel Alexander - Writings</title>
+      </Head>
+      <Section flexDirection={'column'} justifyContent={'center'}>
+        <Text as="h1" fontSize={'2rem'} fontWeight={'bold'}>
+          Writings 📖
+        </Text>
+        <Text as={'p'}>
+          I like to write articles in hopes that you guys will find them helpful
+          and interesting! Check them out below.
+        </Text>
+        <Box marginTop={8}>
+          <SimpleGrid columns={1} gap={8}>
             {allPostsData.map(({ excerpt, slug, id, title, thumbnail }) => (
               <BlogGridItem
                 key={id}

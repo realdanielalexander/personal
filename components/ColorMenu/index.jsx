@@ -55,39 +55,33 @@ const ColorMenu = () => {
     window.localStorage.setItem('colorMode', JSON.stringify(color))
   }
   return (
-    <Box p={4} position={'absolute'}>
-      <Box ml={2} display={{ base: 'inline-block' }}>
-        <Menu>
-          <MenuButton
-            as={Button}
-            color={color.accent}
-            style={{
-              WebkitTapHighlightColor: 'transparent',
-              outlineColor: 'transparent'
-            }}
-            rightIcon={<ChevronDownIcon />}
-          >
-            {color.name}
-          </MenuButton>
-          <MenuList>
-            {colors.map(color => (
-              <MenuItem
-                key={color.name}
-                backgroundColor={color.background}
-                textColor={color.accent}
-                style={{
-                  transition: 'all .5s ease',
-                  WebkitTransition: 'all .5s ease',
-                  MozTransition: 'all .5s ease'
-                }}
-                onClick={() => onClickHandler(color)}
-              >
-                {color.name}
-              </MenuItem>
-            ))}
-          </MenuList>
-        </Menu>
-      </Box>
+    <Box display={{ base: 'inline-block' }}>
+      <Menu>
+        <MenuButton
+          as={Button}
+          color={color.text}
+          rightIcon={<ChevronDownIcon />}
+        >
+          {color.name}
+        </MenuButton>
+        <MenuList>
+          {colors.map(color => (
+            <MenuItem
+              key={color.name}
+              backgroundColor={color.background}
+              textColor={color.accent}
+              style={{
+                transition: 'all .5s ease',
+                WebkitTransition: 'all .5s ease',
+                MozTransition: 'all .5s ease'
+              }}
+              onClick={() => onClickHandler(color)}
+            >
+              {color.name}
+            </MenuItem>
+          ))}
+        </MenuList>
+      </Menu>
     </Box>
   )
 }

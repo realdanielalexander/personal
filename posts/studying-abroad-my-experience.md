@@ -7,9 +7,9 @@ tags: [self-improvement]
 excerpt: In 2021, I spent a semester studying abroad in the US at the University of Pennsylvania. I learned so much both in and out of the classroom, assimilated with an unfamiliar culture, and made lifelong friends.
 ---
 
-## Studying Abroad — My Experience
-
 ![studying-abroad-my-experience](/images/studying-abroad.jpg)
+
+# Studying Abroad — My Experience
 
 It was May 2021, I was just about to finish my sixth semester. I was in my third year, or a junior as they would say in the US, studying Informatics at a well-known private university in Bandung, Indonesia. Wrapping up my fourth online semester, I felt empty and in need of a change. After three years of studying, doing problem sets and building different technologies, I didn't really feel the spark that I once had in my freshman year when I first got admitted to college. My education experience hasn't been the smoothest. In fact, I wasn't the best student in high school and I planned to graduate college earlier as I was intrigued by computers and wanted to prove myself that I can succeed in this field. However, things changed and my graduation was postponed to follow the regular curriculum timeline. The expression of “being in the right place at the right time” resonated with my situation at the time. I saw an opportunity for a scholarship that opened applications for third and fourth year students to study abroad. Indonesian International Student Mobility Awards is the Government of Indonesia scholarship scheme to fund Indonesian students for mobility program at top universities overseas. Had I graduated earlier, I wouldn't even have the chance to apply. The short two-week selection process felt like the longest two weeks in my life. I found myself locked up in my room day in day out trying to come up with strategies to pass the selection processes.
 
