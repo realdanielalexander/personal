@@ -27,6 +27,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setColor } from '../store/slices/colorModeSlice'
 import DesktopMenu from './DesktopMenu'
 import { useRouter } from 'next/router'
+import ColorMenu from './ColorMenu'
+import ColorMenuLite from './ColorMenuLite'
 
 const blink = keyframes`
   50% {
@@ -51,9 +53,12 @@ const LinkItem = ({ href, path, children }) => {
   const inactiveColor = useColorModeValue('gray200', 'whiteAlpha')
   return (
     <Box>
-      {active ? <Caret>&gt;</Caret> : <CaretInvisible>&gt;</CaretInvisible>}
       <NextLink href={href}>
-        <Link p={2} color={inactiveColor} borderRadius="md">
+        <Link
+          color={inactiveColor}
+          borderRadius="md"
+          textDecor={active && 'underline'}
+        >
           {children}
           <span id=""></span>
         </Link>
@@ -77,33 +82,57 @@ const Navbar = props => {
   }, [dispatch])
 
   return (
-    <Box position="fixed" as="nav" w="100%" zIndex={1} {...props}>
-      <DesktopMenu isOpen={isOpen} onClose={onClose} />
-      <Container
-        display="flex"
-        maxW="100%"
-        px={16}
-        py={4}
-        wrap="wrap"
-        align="center"
-        justify="space-between"
-      >
-        <Flex align="center" mr={4}>
-          <Heading as="h1" size="lg" letterSpacing="tighter">
-            <Logo />
-          </Heading>
-        </Flex>
-        <Box flex={1} flexDirection={'row'} align="right">
-          <Button
-            border={0}
-            outline={0}
-            variant="link"
-            zIndex={9999}
-            mt={2}
-            onClick={onToggle}
+    <Box as="nav" w="100%" py={8} zIndex={1} {...props}>
+      <Container display="flex" maxW="container.md" alignItems="space-between">
+        <Heading as="h1" size="lg" letterSpacing="tighter">
+          <Logo />
+        </Heading>
+        <Box flex={1}>
+          <Stack
+            direction={{ base: 'column', md: 'row' }}
+            display={{ base: 'none', md: 'flex' }}
+            width={{ base: 'full', md: 'auto' }}
+            alignItems="center"
+            justifyContent="end"
+            flexGrow={1}
+            gap={4}
+            mt={{ base: 4, nmd: 0 }}
           >
-            {isOpen ? 'Close' : 'Menu'}
-          </Button>
+            <LinkItem href="/blog" path={path}>
+              writings
+            </LinkItem>
+            <LinkItem href="/gallery" path={path}>
+              gallery
+            </LinkItem>
+
+            <ColorMenu />
+          </Stack>
+
+          <Box
+            ml={2}
+            display={{ base: 'flex', md: 'none' }}
+            gap={4}
+            justifyContent={'end'}
+          >
+            <Menu>
+              <MenuButton
+                as={IconButton}
+                icon={<HamburgerIcon />}
+                variant="outline"
+                aria-label="Options"
+              ></MenuButton>
+              <MenuList>
+                <NextLink href="/blog" passHref>
+                  <MenuItem as={Link}>writings</MenuItem>
+                </NextLink>
+                <NextLink href="/gallery" passHref>
+                  <MenuItem as={Link}>gallery</MenuItem>
+                </NextLink>
+              </MenuList>
+            </Menu>
+
+            <ColorMenu />
+          </Box>
         </Box>
       </Container>
     </Box>

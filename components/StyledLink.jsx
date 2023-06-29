@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 const StyledLink = ({ children, ...props }) => {
   const colorMode = useSelector(state => state.colorMode)
   return (
-    <Link color={colorMode.accent} textUnderlineOffset={4} {...props}>
+    <Link color={colorMode.accent} {...props}>
       {children}
     </Link>
   )

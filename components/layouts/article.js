@@ -18,8 +18,7 @@ const Layout = ({ children, title }) => (
     style={{
       display: 'flex',
       flexDirection: 'column',
-      position: 'relative',
-      minHeight: '100vh'
+      position: 'relative'
     }}
   >
     <>

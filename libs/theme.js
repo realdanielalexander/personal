@@ -16,14 +16,18 @@ const components = {
       'section-title': {
         fontSize: '1.5rem',
         textDecorationColor: '#525252',
-        textDecorationThickness: 4,
-        marginBottom: 4
+        textDecorationThickness: 4
       }
     }
   },
   Image: {
     baseStyle: () => ({
       borderRadius: '12px'
+    })
+  },
+  Link: {
+    baseStyle: () => ({
+      textUnderlineOffset: '8px'
     })
   }
 }

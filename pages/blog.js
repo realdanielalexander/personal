@@ -8,7 +8,9 @@ import {
   Button,
   useColorModeValue,
   IconButton,
-  SimpleGrid
+  SimpleGrid,
+  Tag,
+  Text
 } from '@chakra-ui/react'
 import {
   IoLogoGithub,
@@ -32,13 +34,16 @@ import { getSortedPostsData } from '../libs/posts'
 const Blog = ({ allPostsData }) => {
   return (
     <Layout>
-      <Section
-        minH={'100vh'}
-        flexDirection={'column'}
-        justifyContent={'center'}
-      >
-        <Box maxW="100%" pt={24}>
-          <SimpleGrid columns={[1, 1, 2, 2, 3]} gap={8}>
+      <Section flexDirection={'column'} justifyContent={'center'}>
+        <Text as="h1" fontSize={'2rem'} fontWeight={'bold'}>
+          Writings 📖
+        </Text>
+        <Text as={'p'}>
+          I like to write articles in hopes that you guys will find them helpful
+          and interesting! Check them out below.
+        </Text>
+        <Box marginTop={8}>
+          <SimpleGrid columns={1} gap={8}>
             {allPostsData.map(({ excerpt, slug, id, title, thumbnail }) => (
               <BlogGridItem
                 key={id}
