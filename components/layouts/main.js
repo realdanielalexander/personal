@@ -25,6 +25,10 @@ const Main = ({ children, router }) => {
       <Head>
         <meta name="viewport" content="width=device-width, initial scale=1" />
         <title>Daniel Alexander - Homepage</title>
+        <link
+          rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>"
+        ></link>
       </Head>
       <Navbar path={router.asPath}></Navbar>
       <Container maxW="container.md" flexGrow={1}>

@@ -27,6 +27,9 @@ const Post = ({ post, preview }) => {
           <Text>Loading…</Text>
         ) : (
           <>
+            <Head>
+              <title>Daniel Alexander - {post.title}</title>
+            </Head>
             <Box className="mb-32">
               <Text as={'h1'} fontSize="2.5rem" fontWeight="bold">
                 {post.title}

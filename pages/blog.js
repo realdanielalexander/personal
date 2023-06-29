@@ -30,10 +30,14 @@ import { BioDescription, BioSection, BioYear } from '../components/experiences'
 import { BlogGridItem } from '../components/blog-grid-item'
 
 import { getSortedPostsData } from '../libs/posts'
+import Head from 'next/head'
 
 const Blog = ({ allPostsData }) => {
   return (
     <Layout>
+      <Head>
+        <title>Daniel Alexander - Writings</title>
+      </Head>
       <Section flexDirection={'column'} justifyContent={'center'}>
         <Text as="h1" fontSize={'2rem'} fontWeight={'bold'}>
           Writings 📖
