@@ -1,8 +1,10 @@
-import { Box, Image, Text } from '@chakra-ui/react'
+import NextLink from 'next/link'
+import { Box, Image, LinkBox, LinkOverlay, Text } from '@chakra-ui/react'
 import Layout from '../components/layouts/article'
 import React from 'react'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import Section from '../components/section'
+import GalleryItem from '../components/gallery-item'
 
 const Gallery = () => {
   return (
@@ -15,20 +17,20 @@ const Gallery = () => {
           I like to take pictures of (mainly) cars and motor vehicles. These are
           some select vehicles that I have had the opportunity to shoot.
         </Text>
-        <Box marginTop={8}></Box>
-        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2 }}>
-          <Masonry gutter={'16px'}>
-            <Image src="/images/porsche/1.jpg" alt="porsche1" />
-            <Image src="/images/porsche/2.jpg" alt="porsche2" />
-            <Image src="/images/porsche/3.jpg" alt="porsche3" />
-            {/* Demon */}
-            {[...Array(12).keys()].map(index => {
-              const src = `/images/mdc-demon/${index + 1}.jpg`
-              const alt = `demon${index + 1}`
-              return <Image key={index} src={src} alt={alt} />
-            })}
-          </Masonry>
-        </ResponsiveMasonry>
+        <Box marginTop={8} display="flex" flexDirection={'column'} gap={8}>
+          <GalleryItem
+            src={'/images/porsche/1.jpg'}
+            alt="911"
+            href="/gallery/skirts-911"
+            title="Porsche 911 Carrera"
+          />
+          <GalleryItem
+            src={'/images/mdc-demon/3.jpg'}
+            alt="demon"
+            href="/gallery/mdc-demon"
+            title="Dodge Demon"
+          />
+        </Box>
       </Section>
     </Layout>
   )
