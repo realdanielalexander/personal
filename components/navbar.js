@@ -98,7 +98,7 @@ const Navbar = props => {
             gap={4}
             mt={{ base: 4, nmd: 0 }}
           >
-            <LinkItem href="/blog" path={path}>
+            <LinkItem href="/writings" path={path}>
               writings
             </LinkItem>
             <LinkItem href="/gallery" path={path}>
