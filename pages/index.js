@@ -104,8 +104,8 @@ const Page = () => {
             <Box>
               <Text>Hello! I&apos;m Daniel 😄</Text>
               <Text marginTop={4}>
-                I&apos;m currently looking for research and academic
-                opportunities. My research interest is in Artificial
+                I&apos;m currently looking for PhD positions in Artificial
+                Intelligence. My research interest is in Artificial
                 Intelligence, Computer Vision, and Machine Learning for
                 automation and sensing. In the past five years, I have gathered
                 experience in front-end programming, computer graphics, and
@@ -123,7 +123,7 @@ const Page = () => {
                 and{' '}
                 <StyledLink href="https://scholar.google.com/citations?user=s51dQZYAAAAJ&hl=en">
                   Hans Christian Kurniawan
-                </StyledLink>
+                </StyledLink>{' '}
                 to analyze the implementation of DeepLabV3+ on urban scenes of
                 Bandung, Indonesia, was accepted and presented in the 2022 IEEE
                 International Conference on Data and Software Engineering
