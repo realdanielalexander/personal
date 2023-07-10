@@ -30,6 +30,12 @@ const Gallery = () => {
             href="/gallery/mdc-demon"
             title="Dodge Demon"
           />
+          <GalleryItem
+            src={'/images/mdc-evo/2.jpg'}
+            alt="evo"
+            href="/gallery/mdc-evo"
+            title="Mitsubishi Evo IV"
+          />
         </Box>
       </Section>
     </Layout>

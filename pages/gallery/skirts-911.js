@@ -4,20 +4,23 @@ import React from 'react'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import Section from '../../components/section'
 
-const Skirts911 = () => {
+const MDCEvo = () => {
   return (
     <Layout>
       <Section delay={0.1}>
         <Text as="h1" fontSize="2rem" fontWeight="bold">
           Porsche 911 Carrera
         </Text>
-        <Text as="p">Shot at SKIRTS Grill &amp; Bar</Text>
+        <Text as="p">Short at SKIRTS Grill &amp; Bar.</Text>
         <Box marginTop={8}></Box>
         <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2 }}>
           <Masonry gutter={'16px'}>
-            <Image src="/images/porsche/1.jpg" alt="porsche1" />
-            <Image src="/images/porsche/2.jpg" alt="porsche2" />
-            <Image src="/images/porsche/3.jpg" alt="porsche3" />
+            {/* Demon */}
+            {[...Array(11).keys()].map(index => {
+              const src = `/images/skirts-911/${index + 1}.jpg`
+              const alt = `911${index + 1}`
+              return <Image key={index} src={src} alt={alt} />
+            })}
           </Masonry>
         </ResponsiveMasonry>
       </Section>
@@ -25,4 +28,4 @@ const Skirts911 = () => {
   )
 }
 
-export default Skirts911
+export default MDCEvo
