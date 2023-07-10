@@ -19,7 +19,7 @@ const Gallery = () => {
         </Text>
         <Box marginTop={8} display="flex" flexDirection={'column'} gap={8}>
           <GalleryItem
-            src={'/images/porsche/1.jpg'}
+            src={'/images/skirts-911/10.jpg'}
             alt="911"
             href="/gallery/skirts-911"
             title="Porsche 911 Carrera"
