@@ -98,13 +98,12 @@ const Navbar = props => {
             gap={4}
             mt={{ base: 4, nmd: 0 }}
           >
-            <LinkItem href="/writings" path={path}>
+            {/* <LinkItem href="/writings" path={path}>
               writings
             </LinkItem>
             <LinkItem href="/gallery" path={path}>
               gallery
-            </LinkItem>
-
+            </LinkItem> */}
             <ColorMenu />
           </Stack>
 
@@ -121,14 +120,14 @@ const Navbar = props => {
                 variant="outline"
                 aria-label="Options"
               ></MenuButton>
-              <MenuList>
+              {/* <MenuList>
                 <NextLink href="/blog" passHref>
                   <MenuItem as={Link}>writings</MenuItem>
                 </NextLink>
                 <NextLink href="/gallery" passHref>
                   <MenuItem as={Link}>gallery</MenuItem>
                 </NextLink>
-              </MenuList>
+              </MenuList> */}
             </Menu>
 
             <ColorMenu />

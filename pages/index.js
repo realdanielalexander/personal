@@ -93,9 +93,6 @@ const Page = () => {
     <Layout>
       <Section display="flex" alignItems="center" flexDirection={'row'}>
         <Box display="flex" flexDirection={'column'}>
-          <Text as="h1" fontSize="2rem" fontWeight="bold">
-            Daniel Alexander
-          </Text>
           <Box
             display="flex"
             flexDirection={{ base: 'column-reverse', md: 'row' }}
@@ -104,12 +101,17 @@ const Page = () => {
             <Box>
               <Text>Hello! I&apos;m Daniel 😄</Text>
               <Text marginTop={4}>
-                I&apos;m currently looking for PhD positions in Artificial
-                Intelligence. My research interest is in Artificial
-                Intelligence, Computer Vision, and Machine Learning for
-                automation and sensing. In the past five years, I have gathered
-                experience in front-end programming, computer graphics, and
-                machine learning.
+                I&apos;m actively looking for internship opportunities in robotics to 
+                leverage my expertise in vision, perception, and machine learning for
+                Summer 2025.
+              </Text>
+              <Text marginTop={4}>
+              As a Master's student in Computer Science at the University of Pennsylvania,
+                I am taking CIS 5000: Software Foundations, CIS 5800: Machine Perception,
+                and CIS 7000: Neural Scene Rendering.
+                I am also a Teaching Assistant for CIS 4190/5190: Applied Machine Learning,
+                with my main responsibilities being developing recitation worksheets,
+                grading, and holding office hours to answer student questions.
               </Text>
               <Text marginTop={4}>
                 My{' '}
@@ -135,13 +137,13 @@ const Page = () => {
                 flexDirection={'column'}
                 alignItems={'center'}
               >
-                <Box display="flex" gap={'8'} mt={4}>
+                {/* <Box display="flex" gap={'8'} mt={4}>
                   {icons.map(icon => (
                     <StyledLink key={icon.label} href={icon.link} isExternal>
                       {icon.label}
                     </StyledLink>
                   ))}
-                </Box>
+                </Box> */}
                 <Text marginTop={4} textAlign={'center'}>
                   Please reach out to me through email
                   realdanielalexander(at)gmail(dot)com
@@ -150,10 +152,11 @@ const Page = () => {
             </Box>
 
             <Box
-              alignSelf={'start'}
+              alignSelf={{base: 'center', md: 'start'}}
               marginTop={4}
               h="100%"
-              maxW={{ md: '200px' }}
+              maxW={200}
+              
             >
               <Image
                 objectFit={'cover'}
@@ -165,15 +168,19 @@ const Page = () => {
           </Box>
         </Box>
       </Section>
-      <Section delay={0.1} marginTop={16} display="flex" flexDirection="column">
+      <Section delay={0.1} marginTop={8} display="flex" flexDirection="column">
         <Heading as="h3" variant="section-title">
           What I&apos;ve been up to
         </Heading>
         <Box display={'grid'} marginTop={4} gridTemplateColumns={'100px auto'}>
+          <Text>Aug, 2024</Text>
+          <Text>
+            Another degree in the works! University of Pennsylvania, 
+            Masters in Computer and Information Sciences 📚
+          </Text>
           <Text>Jan, 2023</Text>
           <Text>
-            Started my role as a Frontend Engineer in the Shopee Indonesia
-            Payment Processing (SIPP) 🛍️
+            Started my role as a Software Engineer at Shopee 🛍️
           </Text>
           <Text>Nov, 2023</Text>
           <Text>

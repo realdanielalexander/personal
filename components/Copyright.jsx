@@ -6,7 +6,7 @@ const Copyright = () => {
   return (
     <Section paddingY={8} display="flex" flexDirection="column" margin={0}>
       <Text textAlign={'center'} margin={0}>
-        &copy; 2023 Daniel Alexander | Last updated on Jul 10, 2023
+        &copy; 2024 Daniel Alexander | Last updated October 2024
       </Text>
     </Section>
   )
