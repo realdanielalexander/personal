@@ -114,12 +114,13 @@ const Navbar = props => {
             justifyContent={'end'}
           >
             <Menu>
-              <MenuButton
+              {/* Menu for adding more menu */}
+              {/* <MenuButton
                 as={IconButton}
                 icon={<HamburgerIcon />}
                 variant="outline"
                 aria-label="Options"
-              ></MenuButton>
+              ></MenuButton> */}
               {/* <MenuList>
                 <NextLink href="/blog" passHref>
                   <MenuItem as={Link}>writings</MenuItem>

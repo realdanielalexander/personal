@@ -118,15 +118,7 @@ const Page = () => {
                 <StyledLink href="https://ieeexplore.ieee.org/document/9972006">
                   undergraduate thesis
                 </StyledLink>{' '}
-                in computer vision, a research with{' '}
-                <StyledLink href="https://scholar.google.com/citations?user=hxqXZbMAAAAJ&hl=en">
-                  Dr. Hery Heryanto
-                </StyledLink>{' '}
-                and{' '}
-                <StyledLink href="https://scholar.google.com/citations?user=s51dQZYAAAAJ&hl=en">
-                  Hans Christian Kurniawan
-                </StyledLink>{' '}
-                to analyze the implementation of DeepLabV3+ on urban scenes of
+                analayzing the vision model DeepLabV3+ on urban scenes of
                 Bandung, Indonesia, was accepted and presented in the 2022 IEEE
                 International Conference on Data and Software Engineering
                 (ICoDSE).
