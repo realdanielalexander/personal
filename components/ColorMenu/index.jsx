@@ -37,6 +37,14 @@ const colors = [
     accent: ' #444444'
   },
   {
+    name: 'Monokai',
+    background: '#272822',
+    background_dark: '#1F201B',
+    text: '#E6DA74',
+    text_inactive: '#608C55',
+    accent: '#E2E2DC'
+  },
+  {
     name: 'Serika Dark',
     background: '#323437',
     background_dark: '#2C2E31',
@@ -59,7 +67,7 @@ const ColorMenu = () => {
       <Menu>
         <MenuButton
           as={Button}
-          color={color.text}
+          color={color.accent}
           rightIcon={<ChevronDownIcon />}
         >
           {color.name}

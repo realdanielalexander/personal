@@ -101,9 +101,10 @@ const Page = () => {
             <Box>
               <Text>Hello! I&apos;m Daniel 😄</Text>
               <Text marginTop={4}>
-                I&apos;m actively looking for internship opportunities in robotics to 
-                leverage my expertise in vision, perception, and machine learning for
-                Summer 2025.
+                I&apos;m actively looking for internship opportunities in robotics 
+                and software engineering for Summer 2025. I have 5 years
+                of experience building machine learning pipelines and large-scale 
+                commercial software.
               </Text>
               <Text marginTop={4}>
               As a Master's student in Computer Science at the University of Pennsylvania,
