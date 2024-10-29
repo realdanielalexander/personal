@@ -107,7 +107,7 @@ const Page = () => {
                 commercial software.
               </Text>
               <Text marginTop={4}>
-              As a Master's student in Computer Science at the University of Pennsylvania,
+              As a Master&apos;s student in Computer Science at the University of Pennsylvania,
                 I am taking CIS 5000: Software Foundations, CIS 5800: Machine Perception,
                 and CIS 7000: Neural Scene Rendering.
                 I am also a Teaching Assistant for CIS 4190/5190: Applied Machine Learning,
