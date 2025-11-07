@@ -27,7 +27,7 @@ const Logo = () => {
           fontFamily="M PLUS Rounded 1c"
           fontWeight="bold"
         >
-          daniel alexander
+          Daniel Alexander
         </Text>
       </a>
     </Link>

@@ -31,7 +31,7 @@ const Main = ({ children, router }) => {
         ></link>
       </Head>
       <Navbar path={router.asPath}></Navbar>
-      <Container maxW="container.md" flexGrow={1}>
+      <Container maxW="container.lg" flexGrow={1}>
         {children}
       </Container>
       <Copyright />

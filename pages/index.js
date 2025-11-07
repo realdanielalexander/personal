@@ -15,11 +15,13 @@ import {
 } from '@chakra-ui/react'
 import {
   IoLogoGithub,
-  IoLogoInstagram,
+  IoIosSchool,
   IoLogoLinkedin,
   IoLogoYoutube,
+  IoIosDesktop,
+  IoIosPin,
   IoMdMail
-} from 'react-icons/io'
+} from 'react-icons/io';
 import P from '../components/paragraph'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import Layout from '../components/layouts/article'
@@ -39,6 +41,9 @@ import React from 'react'
 import ProjectInline from '../components/ProjectInline'
 import StyledBox from '../components/HeadingSection'
 import { useState, useEffect } from 'react'
+import { getBioContent } from '../libs/posts'
+import { remark } from 'remark'
+import html from 'remark-html'
 
 const icons = [
   {
@@ -85,45 +90,194 @@ const Loader = ({ setLoading }) => {
   )
 }
 
-const Page = () => {
+const markdownToHtml = async markdown => {
+  const result = await remark().use(html).process(markdown)
+  return result.toString()
+}
+
+const Page = ({ bioContent }) => {
   // Set color scheme
   const colorMode = useSelector(state => state.colorMode)
   const [loading, setLoading] = useState(true)
   return (
     <Layout>
-      <Section display="flex" alignItems="center" flexDirection={'row'}>
-        <Box display="flex" flexDirection={'column'}>
+      <Section>
+        <Box 
+          display="flex" 
+          flexDirection={'column'}
+          width="100%"
+        >
           <Box
-            display="flex"
-            flexDirection={{ base: 'column-reverse', md: 'row' }}
-            gap={8}
+            display={{ base: 'flex', sm: 'flex', md: 'flex' }}
+            flexDirection={{ base: 'column', sm: 'column', md: 'row' }}
+            alignItems={{ base: 'flex-start', sm: 'flex-start', md: 'stretch' }}
+            gap={{ base: 4, sm: 4, md: 8 }}
+            minH={{ base: 'auto', sm: 'auto', md: '500px' }}
           >
-            <Box>
-              <Text>Hello! I&apos;m Daniel 😄</Text>
-              <Text marginTop={4}>
-                I&apos;m actively looking for internship opportunities in robotics 
-                and software engineering for Summer 2025. I have 5 years
-                of experience building machine learning pipelines and large-scale 
-                commercial software.
-              </Text>
-              <Text marginTop={4}>
-              As a Master&apos;s student in Computer Science at the University of Pennsylvania,
-                I am taking CIS 5000: Software Foundations, CIS 5800: Machine Perception,
-                and CIS 7000: Neural Scene Rendering.
-                I am also a Teaching Assistant for CIS 4190/5190: Applied Machine Learning,
-                with my main responsibilities being developing recitation worksheets,
-                grading, and holding office hours to answer student questions.
-              </Text>
-              <Text marginTop={4}>
-                My{' '}
-                <StyledLink href="https://ieeexplore.ieee.org/document/9972006">
-                  undergraduate thesis
-                </StyledLink>{' '}
-                analayzing the vision model DeepLabV3+ on urban scenes of
-                Bandung, Indonesia, was accepted and presented in the 2022 IEEE
-                International Conference on Data and Software Engineering
-                (ICoDSE).
-              </Text>
+            {/* Image and Info Grid Container */}
+            <Box
+              display={{ base: 'flex', sm: 'flex', md: 'flex' }}
+              flexDirection={{ base: 'row', sm: 'row', md: 'column' }}
+              gap={{ base: 4, sm: 4, md: 0 }}
+              justifyContent={{ base: 'flex-start', sm: 'flex-start', md: 'flex-start' }}
+              alignItems={{ base: 'center', sm: 'center', md: 'center' }}
+              minH={{ base: '200px', sm: '200px', md: 'auto' }}
+              maxW={{ base: 'none', sm: 'none', md: '250px' }}
+              alignSelf={{ base: 'flex-start', sm: 'flex-start', md: 'flex-start' }}
+              flexShrink={0}
+              position={{ base: 'relative', sm: 'relative', md: 'sticky' }}
+              top={{ base: 'auto', sm: 'auto', md: '120px' }}
+              left={{ base: 'auto', sm: 'auto', md: 'auto' }}
+              height={{ base: 'auto', sm: 'auto', md: 'auto' }}
+              zIndex={{ base: 'auto', sm: 'auto', md: 1 }}
+              paddingTop={{ base: 0, sm: 0, md: '16px' }}
+              marginTop={{ base: -4, sm: -4, md: 0 }}
+            >
+              {/* Image */}
+              <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                width={{ base: 'auto', sm: 'auto', md: 'auto' }}
+                minW={{ base: '140px', sm: '140px', md: '200px' }}
+                alignSelf={{ base: 'center', sm: 'center', md: 'auto' }}
+                flexShrink={0}
+              >
+                <Image
+                  objectFit="cover"
+                  src="/images/profile1.jpeg"
+                  alt="profile"
+                  borderRadius={6400}
+                  width={{ base: '140px', sm: '140px', md: '200px' }}
+                  height={{ base: '140px', sm: '140px', md: '200px' }}
+                  marginBottom={{ base: 0, sm: 0, md: 4 }}
+                />
+              </Box>
+              
+              {/* Info Grid */}
+              <Box 
+                width="100%" 
+                fontSize="sm" 
+                textAlign={{ base: 'left', sm: 'left', md: 'left' }}
+                display="flex"
+                flexDirection="column"
+                justifyContent={{ base: 'center', sm: 'center', md: 'flex-start' }}
+                alignSelf={{ base: 'center', sm: 'center', md: 'auto' }}
+              >
+                {/* Description spanning two columns */}
+                <Box 
+                  display="grid" 
+                  gridTemplateColumns="auto 1fr" 
+                  gap={2} 
+                  marginBottom={3}
+                  alignItems="center"
+                >
+                  <IoIosDesktop size={16} />
+                  <Text fontWeight="medium">Systems Researcher</Text>
+                </Box>
+
+                <Box 
+                  display="grid" 
+                  gridTemplateColumns="auto 1fr" 
+                  gap={2} 
+                  marginBottom={3}
+                  alignItems="center"
+                >
+                  <IoIosSchool size={16} />
+                  <Text fontWeight="medium">CS Master's Student at UPenn</Text>
+                </Box>
+                
+                {/* Location */}
+                <Box 
+                  display="grid" 
+                  gridTemplateColumns="auto 1fr" 
+                  gap={2} 
+                  marginBottom={3}
+                  alignItems="center"
+                >
+                  <IoIosPin size={16} />
+                  <Text>Philadelphia, PA</Text>
+                </Box>
+                
+                {/* Email */}
+                <Box 
+                  display="grid" 
+                  gridTemplateColumns="auto 1fr" 
+                  gap={2} 
+                  marginBottom={3}
+                  alignItems="center"
+                >
+                  <IoMdMail size={16} />
+                  <StyledLink href="mailto:alexdan@seas.upenn.edu">
+                    alexdan@seas.upenn.edu
+                  </StyledLink>
+                </Box>
+                
+                {/* Google Scholar */}
+                {/* <Box 
+                  display="grid" 
+                  gridTemplateColumns="auto 1fr" 
+                  gap={2} 
+                  marginBottom={3}
+                  alignItems="center"
+                >
+                  <IoLogoGithub size={16} />
+                  <StyledLink href="https://scholar.google.com/citations?user=1dQ6mksAAAAJ&hl=en" isExternal>
+                    Google Scholar
+                  </StyledLink>
+                </Box> */}
+              </Box>
+            </Box>
+
+            <Box
+              flex="1"
+              display={{ base: 'flex', sm: 'flex', md: 'flex' }}
+              flexDirection="column"
+              justifyContent="center"
+              paddingLeft={{ base: 0, sm: 0, md: 0 }}
+              marginLeft={{ base: 0, sm: 0, md: 0 }}
+              marginTop={{ base: -12, sm: -12, md: 0 }}
+            >
+              <Box
+                dangerouslySetInnerHTML={{ __html: bioContent }}
+                sx={{
+                  '& p': {
+                    marginTop: 4
+                  },
+                  '& h2': {
+                    fontSize: '1.5rem',
+                    fontWeight: 'bold',
+                    marginTop: 8,
+                    marginBottom: 4,
+                    color: colorMode.accent
+                  },
+                  '& h3': {
+                    fontSize: '1.25rem',
+                    fontWeight: 'semibold',
+                    marginTop: 6,
+                    marginBottom: 2,
+                    color: colorMode.accent
+                  },
+                  '& hr': {
+                    marginTop: 4,
+                    marginBottom: 6,
+                    borderColor: 'gray.300'
+                  },
+                  '& ul': {
+                    marginLeft: 6,
+                    marginTop: 2,
+                    marginBottom: 4
+                  },
+                  '& ol': {
+                    marginLeft: 6,
+                    marginTop: 2,
+                    marginBottom: 4
+                  },
+                  '& li': {
+                    marginBottom: 2
+                  }
+                }}
+              />
               {/* contact section */}
               <Box
                 display="flex"
@@ -137,32 +291,13 @@ const Page = () => {
                     </StyledLink>
                   ))}
                 </Box> */}
-                <Text marginTop={4} textAlign={'center'}>
-                  Please reach out to me through email
-                  realdanielalexander(at)gmail(dot)com
-                </Text>
               </Box>
-            </Box>
-
-            <Box
-              alignSelf={{base: 'center', md: 'start'}}
-              marginTop={4}
-              h="100%"
-              maxW={200}
-              
-            >
-              <Image
-                objectFit={'cover'}
-                src="/images/profile1.jpeg"
-                alt="profile"
-                borderRadius={6400}
-              />
             </Box>
           </Box>
         </Box>
       </Section>
       <Section delay={0.1} marginTop={8} display="flex" flexDirection="column">
-        <Heading as="h3" variant="section-title">
+        {/* <Heading as="h3" variant="section-title">
           What I&apos;ve been up to
         </Heading>
         <Box display={'grid'} marginTop={4} gridTemplateColumns={'100px auto'}>
@@ -211,10 +346,21 @@ const Page = () => {
             Started my role as a research assistant at the Web Intelligence and
             Data Mining Lab, National Central University Taiwan 🔬
           </Text>
-        </Box>
+        </Box> */}
       </Section>
     </Layout>
   )
 }
 
 export default Page
+
+export async function getStaticProps() {
+  const bioContent = getBioContent()
+  const content = await markdownToHtml(bioContent)
+
+  return {
+    props: {
+      bioContent: content
+    }
+  }
+}

@@ -82,8 +82,8 @@ const Navbar = props => {
   }, [dispatch])
 
   return (
-    <Box as="nav" w="100%" py={8} zIndex={1} {...props}>
-      <Container display="flex" maxW="container.md" alignItems="space-between">
+    <Box as="nav" w="100%" py={8} zIndex={10} position="sticky" top={0} bg="inherit" {...props}>
+      <Container display="flex" maxW="container.lg" alignItems="space-between">
         <Heading as="h1" size="lg" letterSpacing="tighter">
           <Logo />
         </Heading>
