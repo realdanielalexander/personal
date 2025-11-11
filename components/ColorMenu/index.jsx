@@ -13,6 +13,15 @@ import { setColor } from '../../store/slices/colorModeSlice'
 
 const colors = [
   {
+    name: 'Paper',
+    background: '#FFFFFF',
+    background_dark: '#AAAAAA',
+    text: '#444444',
+    text_inactive: '#B2B2B2',
+    accent: '#444444',
+    text_highlight: '#2E8093'
+  },
+  {
     name: 'Cyberspace',
     background: '#181C18',
     background_dark: '#131613',
@@ -29,15 +38,6 @@ const colors = [
     text_inactive: '#404142',
     accent: '#79A617',
     text_highlight: '#B8E994'
-  },
-  {
-    name: 'Paper',
-    background: '#EEEEEE',
-    background_dark: '#DDDDDD',
-    text: '#444444',
-    text_inactive: '#B2B2B2',
-    accent: '#444444',
-    text_highlight: '#2D3436'
   },
   {
     name: 'Monokai',

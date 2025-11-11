@@ -5,7 +5,8 @@ import { useSelector } from 'react-redux'
 const styles = {
   global: props => ({
     body: {
-      bg: mode('#FFFAF3', '#202023', '#323437')(props)
+      bg: mode('#FFFAF3', '#202023', '#323437')(props),
+      fontWeight: 400
     }
   })
 }
@@ -18,6 +19,11 @@ const components = {
         textDecorationColor: '#525252',
         textDecorationThickness: 4
       }
+    }
+  },
+  Text: {
+    baseStyle: {
+      fontWeight: 600 
     }
   },
   Image: {

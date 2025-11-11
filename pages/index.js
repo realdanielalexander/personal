@@ -184,7 +184,7 @@ const Page = ({ bioContent }) => {
                   alignItems="center"
                 >
                   <IoIosSchool size={16} />
-                  <Text fontWeight="medium">CS Master's Student at UPenn</Text>
+                  <Text fontWeight="medium">University of Pennsylvania</Text>
                 </Box>
                 
                 {/* Location */}
@@ -257,6 +257,16 @@ const Page = ({ bioContent }) => {
                     marginTop: 6,
                     marginBottom: 2,
                     color: colorMode.accent
+                  },
+                  '& strong': {
+                    color: colorMode.accent
+                  },
+                  '& b': {
+                    color: colorMode.accent
+                  },
+                  '& a': {
+                    color: colorMode.accent,
+                    textDecoration: 'underline'
                   },
                   '& hr': {
                     marginTop: 4,

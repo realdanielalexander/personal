@@ -24,8 +24,6 @@ const Logo = () => {
       <a>
         <Text
           color={colorMode.accent}
-          fontFamily="M PLUS Rounded 1c"
-          fontWeight="bold"
         >
           Daniel Alexander
         </Text>
