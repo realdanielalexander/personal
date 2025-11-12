@@ -17,7 +17,7 @@ I'm currently a Master's student in Computer Science at the University of Pennsy
 
 ---
 
-Xuting Liu, **Daniel Alexander**, Behnaz Arzani, Siva Kesava Reddy Kakarla, Vincent Liu (In submission to NSDI'25)
+Xuting Liu, **Daniel Alexander**, Behnaz Arzani, Siva Kesava Reddy Kakarla, Vincent Liu (In submission to NSDI'26)
 
 **Background:** Early-Exiting (EE) in Large Language Models (LLMs) is a technique that aim to accelerate inference by allowing "easy" tokens to exit the model early to save computational resources. However, operationalizing EE LLMs remains a challenge, since EE has mostly been studied in a *single-inference* setting. This project aims to extend EE LLM serving in a *batched* setting by introducing DREX, the first system that operationalizes EE LLMs through *Dynamic Rebatching*. DREX integrates two major innovations: a copy-free rebatching mechanism that eliminates physical data movement, and a memory-efficient state-copying approach that reduces redundant KV cache usage. Together, these optimizations deliver up to 2–12× throughput improvements over baseline frameworks while maintaining high output quality and eliminating involuntary exits.
 
