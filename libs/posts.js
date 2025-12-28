@@ -77,3 +77,100 @@ export function getBioContent() {
   const bioPost = getPostBySlug('bio', ['content'])
   return bioPost.content || ''
 }
+
+export function getAllProjects(fields = []) {
+  const projectsDirectory = path.join(postsDirectory, 'projects')
+  if (!fs.existsSync(projectsDirectory)) {
+    return []
+  }
+  
+  const fileNames = fs.readdirSync(projectsDirectory)
+  
+  // Always include 'order', 'type', and 'slug' for sorting and filtering
+  const requiredFields = ['type', 'slug', 'order']
+  
+  if (fields.length === 0) {
+    // Get all fields, but include order for sorting
+    const projects = fileNames
+      .filter(fileName => fileName.endsWith('.md'))
+      .map(fileName => {
+        const slug = fileName.replace(/\.md$/, '')
+        return getProjectBySlug(slug, ['order'])
+      })
+      .filter(project => project && project.type === 'project')
+      .sort((a, b) => {
+        const orderA = a.order || 999
+        const orderB = b.order || 999
+        return orderA - orderB
+      })
+    return projects
+  }
+  
+  // For specific fields, always include required fields
+  const fieldsWithRequired = [...new Set([...fields, ...requiredFields])]
+  
+  const projects = fileNames
+    .filter(fileName => fileName.endsWith('.md'))
+    .map(fileName => {
+      const slug = fileName.replace(/\.md$/, '')
+      return getProjectBySlug(slug, fieldsWithRequired)
+    })
+    .filter(project => project && project.type === 'project')
+    .sort((a, b) => {
+      const orderA = a.order || 999
+      const orderB = b.order || 999
+      return orderA - orderB
+    })
+  
+  // Remove required fields from results if they weren't requested
+  return projects.map(project => {
+    const result = { ...project }
+    if (!fields.includes('type')) {
+      delete result.type
+    }
+    if (!fields.includes('order')) {
+      delete result.order
+    }
+    return result
+  })
+}
+
+export function getProjectBySlug(slug, fields = []) {
+  const realSlug = slug.replace(/\.md$/, '')
+  const projectsDirectory = path.join(postsDirectory, 'projects')
+  const fullPath = join(projectsDirectory, `${realSlug}.md`)
+  
+  if (!fs.existsSync(fullPath)) {
+    return null
+  }
+  
+  const fileContents = fs.readFileSync(fullPath, 'utf8')
+  const { data, content } = matter(fileContents)
+
+  const items = {}
+
+  // Ensure only the minimal needed data is exposed
+  fields.forEach(field => {
+    if (field === 'slug') {
+      items[field] = realSlug
+    }
+    if (field === 'content') {
+      items[field] = content
+    }
+
+    if (typeof data[field] !== 'undefined') {
+      items[field] = data[field]
+    }
+  })
+
+  // If no fields specified, return all
+  if (fields.length === 0) {
+    return {
+      slug: realSlug,
+      ...data,
+      content
+    }
+  }
+
+  return items
+}
