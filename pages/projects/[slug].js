@@ -216,6 +216,19 @@ export async function getStaticProps({ params }) {
     }
   }
   
+  // Replace video placeholder with actual embed for Mini Minecraft
+  if (project.slug === 'mini-minecraft') {
+    const videoEmbed = `<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
+  <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;" src="https://www.youtube.com/embed/ebVe4SS4DKM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>`
+    // Check if video placeholder exists
+    if (content.includes('[VIDEO_MINI_MINECRAFT]')) {
+      media = videoEmbed
+      content = content.replace(/<p>\[VIDEO_MINI_MINECRAFT\]<\/p>/g, '')
+      content = content.replace(/\[VIDEO_MINI_MINECRAFT\]/g, '')
+    }
+  }
+  
   // Ensure img tags are properly formatted (markdown might wrap them in p tags)
   if (media) {
     media = media.replace(/<p><img([^>]*)><\/p>/g, '<img$1>')

@@ -54,12 +54,12 @@ const ProjectCard = ({ project }) => {
       <VStack align="start" spacing={2} mb={4}>
         {project.problem && (
           <Text fontSize="0.95rem">
-            <strong>Problem:</strong> <Box as="span" fontWeight="normal">{project.problem}</Box>
+            <strong>Background:</strong> <Box as="span" fontWeight="normal">{project.problem}</Box>
           </Text>
         )}
         {project.contribution && (
           <Text fontSize="0.95rem">
-            <strong>Contribution:</strong> <Box as="span" fontWeight="normal">{project.contribution}</Box>
+            <strong>My Contribution:</strong> <Box as="span" fontWeight="normal">{project.contribution}</Box>
           </Text>
         )}
         {project.result && (

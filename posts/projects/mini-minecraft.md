@@ -9,6 +9,8 @@ contribution: Player physics and collision, texture generation and animation, GU
 result: Complete 3D game with procedural world generation
 ---
 
+[VIDEO_MINI_MINECRAFT]
+
 UPenn CIS graduate level class final project
 
 **Background**: UPenn level built a minecraft-style 3D game that leverages the GLSL shader engine in C.
