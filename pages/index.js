@@ -41,7 +41,7 @@ import React from 'react'
 import ProjectInline from '../components/ProjectInline'
 import StyledBox from '../components/HeadingSection'
 import { useState, useEffect } from 'react'
-import { getBioContent, getAllProjects } from '../libs/posts'
+import { getBioContent, getAllProjects, getProjectBySlug } from '../libs/posts'
 import { remark } from 'remark'
 import html from 'remark-html'
 import ProjectCard from '../components/ProjectCard'
@@ -226,6 +226,7 @@ const Page = ({ bioContent, projects }) => {
               <Box
                 dangerouslySetInnerHTML={{ __html: bioContent }}
                 sx={{
+                  color: colorMode.text,
                   '& p': {
                     marginTop: 4
                   },
@@ -245,6 +246,10 @@ const Page = ({ bioContent, projects }) => {
                     marginTop: 6,
                     marginBottom: 2,
                     color: colorMode.accent
+                  },
+                  '& .school-name': {
+                    color: colorMode.accent,
+                    fontWeight: 'medium'
                   },
                   '& strong': {
                     color: colorMode.accent
@@ -273,6 +278,18 @@ const Page = ({ bioContent, projects }) => {
                   },
                   '& li': {
                     marginBottom: 2
+                  },
+                  '& .inline-project': {
+                    marginBottom: '2rem'
+                  },
+                  '& .project-title': {
+                    fontSize: '1.25rem',
+                    fontWeight: 'bold',
+                    marginBottom: '0.5rem'
+                  },
+                  '& .project-link': {
+                    color: colorMode.accent,
+                    textDecoration: 'none'
                   }
                 }}
               />
@@ -291,26 +308,6 @@ const Page = ({ bioContent, projects }) => {
                 </Box> */}
               </Box>
               
-              {/* Projects section */}
-              <Box mt={8}>
-                <Box
-                  as="h2"
-                  sx={{
-                    fontSize: '1.5rem',
-                    fontWeight: 'bold',
-                    marginTop: 0,
-                    marginBottom: 4,
-                    color: colorMode.accent
-                  }}
-                >
-                  Selected Projects
-                </Box>
-                <Box>
-                  {projects.map(project => (
-                    <ProjectCard key={project.slug} project={project} />
-                  ))}
-                </Box>
-              </Box>
             </Box>
           </Box>
         </Box>
@@ -333,8 +330,71 @@ export async function getStaticProps() {
   // Replace placeholder, handling cases where it might be wrapped in paragraph tags
   content = content.replace(/<p>\[VIDEO_PENNOS\]<\/p>/g, videoEmbed)
   content = content.replace(/\[VIDEO_PENNOS\]/g, videoEmbed)
+  
+  // Post-process sections: replace <strong> tags with <span class="school-name"> in Education, Preprints, Publications, Selected Projects, Teaching Experience, Industry Experience, and Honors & Awards sections
+  const sectionsToProcess = [
+    'Education',
+    'Preprints',
+    'Publications',
+    'Selected Projects',
+    'Teaching Experience',
+    'Industry Experience',
+    'Honors & Awards'
+  ]
+  
+  sectionsToProcess.forEach(sectionName => {
+    const escapedName = sectionName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    const sectionRegex = new RegExp(`(<h2>${escapedName}<\/h2>[\\s\\S]*?)(?=<h2>|$)`, 'i')
+    content = content.replace(sectionRegex, (match) => {
+      return match.replace(/<strong>(.*?)<\/strong>/g, '<span class="school-name">$1</span>')
+    })
+  })
 
-  // Get all projects
+  // Get specific projects for inline rendering
+  const drexProject = getProjectBySlug('drex', ['title', 'slug', 'hook', 'problem', 'contribution', 'result'])
+  const pennosProject = getProjectBySlug('pennos', ['title', 'slug', 'hook', 'problem', 'contribution', 'result'])
+  const penncloudProject = getProjectBySlug('penncloud', ['title', 'slug', 'hook', 'problem', 'contribution', 'result'])
+  const miniMinecraftProject = getProjectBySlug('mini-minecraft', ['title', 'slug', 'hook', 'problem', 'contribution', 'result'])
+  
+  // Helper to generate project HTML with simplified format
+  const generateProjectHTML = (project) => {
+    if (!project) return ''
+    
+    const projectLink = `/projects/${project.slug}`
+    
+    // Get custom hook or use default hook
+    let hook = project.hook || ''
+    
+    // Use custom hooks if they exist (for projects that need different descriptions)
+    const customHooks = {
+      'drex': 'Re-architects early-exit LLM serving by rebatching across exit depths to reduce KV-cache waste and tail latency.',
+      'pennos': 'UNIX-like OS kernel implemented in C, featuring preemptive scheduling, virtual memory, IPC, and a FAT-based file system.',
+      'penncloud': 'Distributed email and file-storage platform built on a custom replicated key-value store with strong consistency and transparent failover.',
+      'mini-minecraft': 'Voxel-based engine built in C++/OpenGL with custom shaders, physics, collision handling, and GUI systems.'
+    }
+    
+    if (customHooks[project.slug]) {
+      hook = customHooks[project.slug]
+    }
+    
+    const html = `<div class="inline-project" style="margin-bottom: 1.5rem;">
+      <h3 class="project-title" style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.5rem;">
+        <a href="${projectLink}" class="project-link" style="text-decoration: none;">${project.title}</a>
+      </h3>
+      <p style="font-size: 1rem; margin-bottom: 1rem;">${hook}</p>
+      <p style="margin-bottom: 1.5rem;"><a href="${projectLink}" class="project-link" style="font-size: 0.9rem; text-decoration: none;">Project page →</a></p>
+    </div>`
+    
+    return html
+  }
+  
+  // Replace project placeholders
+  content = content.replace(/\[PROJECT_DREX_FEATURED\]/g, generateProjectHTML(drexProject))
+  content = content.replace(/\[PROJECT_PENNOS_FEATURED\]/g, generateProjectHTML(pennosProject))
+  content = content.replace(/\[PROJECT_PENNCLOUD_FEATURED\]/g, generateProjectHTML(penncloudProject))
+  content = content.replace(/\[PROJECT_MINI_MINECRAFT_CONDENSED\]/g, generateProjectHTML(miniMinecraftProject))
+  
+  // Get all projects for the bottom section (if still needed)
   const projects = getAllProjects([
     'title',
     'slug',
@@ -348,7 +408,7 @@ export async function getStaticProps() {
   return {
     props: {
       bioContent: content,
-      projects
+      projects: [] // Empty array since projects are now inline
     }
   }
 }

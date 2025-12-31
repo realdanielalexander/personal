@@ -7,6 +7,10 @@ hook: Unix-like OS kernel with custom process scheduling, virtual memory, and IP
 problem: Understanding fundamental OS concepts requires hands-on implementation
 contribution: Preemptive priority-aware scheduler, FAT-based file system, multi-process support
 result: Educational OS kernel demonstrating core system concepts
+year: 2024
+role: Student
+context: UPenn CIS Graduate Course
+technologies: C, x86 Assembly, QEMU
 ---
 
 [VIDEO_PENNOS]

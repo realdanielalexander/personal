@@ -7,6 +7,12 @@ hook: End-to-end urban scene segmentation pipeline optimized for Southeast Asian
 problem: Existing pipelines fail to generalize to regions with high traffic variability and informal infrastructure
 contribution: Custom data collection, extensible segmentation pipeline with DeepLabV3+
 result: End-to-end semantic segmentation pipeline, accepted to IEEE International Conference on Data and Software Engineering 2022
+year: 2022
+role: Co-author
+context: Research Project
+team: Daniel Alexander, Hans Christian Kurniawan, Irfin Afifudin, Hery Heryanto
+technologies: TensorFlow, Keras, DeepLabV3+, Python
+status: Accepted to IEEE ICDSE 2022
 ---
 
 **Daniel Alexander**, Hans Christian Kurniawan, Irfin Afifudin, Hery Heryanto

@@ -7,7 +7,15 @@ hook: Re-architects early-exit LLM serving by rebatching across exit depths to r
 problem: KV-cache blow-up + poor batching with early exits
 contribution: Exit-aware rebatching + batch-wise KV copy
 result: 2-12× throughput improvements over baseline frameworks while maintaining high output quality
+year: 2025
+role: Co-author
+context: Research Project
+team: Xuting Liu, Daniel Alexander, Behnaz Arzani, Siva Kesava Reddy Kakarla, Vincent Liu
+technologies: Python, PyTorch, CUDA, Sarathi Framework
+status: In submission to NSDI'26
 ---
+
+![DREX System Architecture](/drex/diagram.png)
 
 Xuting Liu, **Daniel Alexander**, Behnaz Arzani, Siva Kesava Reddy Kakarla, Vincent Liu (In submission to NSDI'26)
 

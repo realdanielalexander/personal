@@ -1,12 +1,24 @@
 import { Box, Heading, Text, Link } from '@chakra-ui/react'
 import Head from 'next/head'
 import Layout from '../../components/layouts/article'
+import Section from '../../components/section'
+import StyledLink from '../../components/StyledLink'
 import { remark } from 'remark'
 import html from 'remark-html'
 import { getAllProjects, getProjectBySlug } from '../../libs/posts'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 import NextLink from 'next/link'
+import {
+  IoIosCalendar,
+  IoIosPerson,
+  IoIosSchool,
+  IoIosPeople,
+  IoIosCode,
+  IoIosTime,
+  IoIosLink,
+  IoIosCheckmarkCircle
+} from 'react-icons/io'
 
 const markdownToHtml = async markdown => {
   const result = await remark().use(html).process(markdown)
@@ -29,7 +41,7 @@ const ProjectDetail = ({ project, nextProject }) => {
   
   return (
     <Layout>
-      <Box>
+      <Section>
         {router.isFallback ? (
           <Text>Loading…</Text>
         ) : (
@@ -37,129 +49,303 @@ const ProjectDetail = ({ project, nextProject }) => {
             <Head>
               <title>Daniel Alexander - {project.title}</title>
             </Head>
-            <Box mb={32}>
-              {/* Extract and render video/image first */}
-              {project.media && (
-                <Box mb={8}>
+            <Box 
+              display="flex" 
+              flexDirection={'column'}
+              width="100%"
+            >
+              <Box
+                display={{ base: 'flex', sm: 'flex', md: 'flex' }}
+                flexDirection={{ base: 'column', sm: 'column', md: 'row' }}
+                alignItems={{ base: 'flex-start', sm: 'flex-start', md: 'stretch' }}
+                gap={{ base: 4, sm: 4, md: 8 }}
+              >
+                {/* Sidebar with project metadata */}
+                <Box
+                  display={{ base: 'flex', sm: 'flex', md: 'flex' }}
+                  flexDirection={{ base: 'row', sm: 'row', md: 'column' }}
+                  gap={{ base: 4, sm: 4, md: 0 }}
+                  justifyContent={{ base: 'flex-start', sm: 'flex-start', md: 'flex-start' }}
+                  alignItems={{ base: 'center', sm: 'center', md: 'center' }}
+                  minH={{ base: 'auto', sm: 'auto', md: 'auto' }}
+                  maxW={{ base: 'none', sm: 'none', md: '250px' }}
+                  alignSelf={{ base: 'flex-start', sm: 'flex-start', md: 'flex-start' }}
+                  flexShrink={0}
+                  position={{ base: 'relative', sm: 'relative', md: 'sticky' }}
+                  top={{ base: 'auto', sm: 'auto', md: '100px' }}
+                  left={{ base: 'auto', sm: 'auto', md: 'auto' }}
+                  height={{ base: 'auto', sm: 'auto', md: 'fit-content' }}
+                  zIndex={{ base: 'auto', sm: 'auto', md: 1 }}
+                  paddingTop={{ base: 0, sm: 0, md: '16px' }}
+                  marginTop={{ base: -4, sm: -4, md: 0 }}
+                >
+                  {/* Metadata Grid */}
                   <Box 
-                    dangerouslySetInnerHTML={{ __html: project.media }}
+                    width="100%" 
+                    fontSize="sm" 
+                    textAlign={{ base: 'left', sm: 'left', md: 'left' }}
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent={{ base: 'center', sm: 'center', md: 'flex-start' }}
+                    alignSelf={{ base: 'center', sm: 'center', md: 'auto' }}
+                  >
+                    {project.year && (
+                      <Box 
+                        display="grid" 
+                        gridTemplateColumns="auto 1fr" 
+                        gap={2} 
+                        marginBottom={3}
+                        alignItems="center"
+                      >
+                        <IoIosCalendar size={16} />
+                        <Text fontWeight="medium">{project.year}</Text>
+                      </Box>
+                    )}
+
+                    {project.role && (
+                      <Box 
+                        display="grid" 
+                        gridTemplateColumns="auto 1fr" 
+                        gap={2} 
+                        marginBottom={3}
+                        alignItems="center"
+                      >
+                        <IoIosPerson size={16} />
+                        <Text fontWeight="medium">{project.role}</Text>
+                      </Box>
+                    )}
+
+                    {project.context && (
+                      <Box 
+                        display="grid" 
+                        gridTemplateColumns="auto 1fr" 
+                        gap={2} 
+                        marginBottom={3}
+                        alignItems="center"
+                      >
+                        <IoIosSchool size={16} />
+                        <Text>{project.context}</Text>
+                      </Box>
+                    )}
+
+                    {project.team && (
+                      <Box 
+                        display="grid" 
+                        gridTemplateColumns="auto 1fr" 
+                        gap={2} 
+                        marginBottom={3}
+                        alignItems="flex-start"
+                      >
+                        <Box mt={0.5}>
+                          <IoIosPeople size={16} />
+                        </Box>
+                        <Text>{project.team}</Text>
+                      </Box>
+                    )}
+
+                    {project.technologies && (
+                      <Box 
+                        display="grid" 
+                        gridTemplateColumns="auto 1fr" 
+                        gap={2} 
+                        marginBottom={3}
+                        alignItems="flex-start"
+                      >
+                        <Box mt={0.5}>
+                          <IoIosCode size={16} />
+                        </Box>
+                        <Text>{project.technologies}</Text>
+                      </Box>
+                    )}
+
+                    {project.duration && (
+                      <Box 
+                        display="grid" 
+                        gridTemplateColumns="auto 1fr" 
+                        gap={2} 
+                        marginBottom={3}
+                        alignItems="center"
+                      >
+                        <IoIosTime size={16} />
+                        <Text>{project.duration}</Text>
+                      </Box>
+                    )}
+
+                    {project.status && (
+                      <Box 
+                        display="grid" 
+                        gridTemplateColumns="auto 1fr" 
+                        gap={2} 
+                        marginBottom={3}
+                        alignItems="center"
+                      >
+                        <IoIosCheckmarkCircle size={16} />
+                        <Text>{project.status}</Text>
+                      </Box>
+                    )}
+
+                    {project.links && (
+                      <Box 
+                        display="flex" 
+                        flexDirection="column"
+                        gap={2}
+                        marginBottom={3}
+                      >
+                        {project.links.split(',').map((link, index) => {
+                          const [label, url] = link.split('|').map(s => s.trim())
+                          return (
+                            <Box 
+                              key={index}
+                              display="grid" 
+                              gridTemplateColumns="auto 1fr" 
+                              gap={2} 
+                              alignItems="center"
+                            >
+                              <IoIosLink size={16} />
+                              <StyledLink href={url} isExternal>
+                                {label}
+                              </StyledLink>
+                            </Box>
+                          )
+                        })}
+                      </Box>
+                    )}
+                  </Box>
+                </Box>
+
+                {/* Main content */}
+                <Box
+                  flex="1"
+                  display={{ base: 'flex', sm: 'flex', md: 'flex' }}
+                  flexDirection="column"
+                  justifyContent="flex-start"
+                  paddingLeft={{ base: 0, sm: 0, md: 0 }}
+                  marginLeft={{ base: 0, sm: 0, md: 0 }}
+                >
+                  {/* Extract and render video/image first */}
+                  {project.media && (
+                    <Box mb={8}>
+                      <Box 
+                        dangerouslySetInnerHTML={{ __html: project.media }}
+                        sx={{
+                          '& img': {
+                            maxWidth: '100%',
+                            borderRadius: '8px'
+                          },
+                          '& div': {
+                            maxWidth: '100%'
+                          }
+                        }}
+                      />
+                    </Box>
+                  )}
+                  <Heading as={'h1'} fontSize="1.5rem" fontWeight="bold" mb={4}>
+                    {project.title}
+                  </Heading>
+                  <Box
+                    width="100%"
+                    dangerouslySetInnerHTML={{ __html: project.content }}
                     sx={{
+                      '& p': {
+                        marginTop: 4,
+                        lineHeight: 1.8
+                      },
+                      '& h2': {
+                        fontSize: '1.5rem',
+                        fontWeight: 'bold',
+                        marginTop: 8,
+                        marginBottom: 4,
+                        color: colorMode.accent
+                      },
+                      '& h3': {
+                        fontSize: '1.25rem',
+                        fontWeight: 'semibold',
+                        marginTop: 6,
+                        marginBottom: 2,
+                        color: colorMode.accent
+                      },
+                      '& strong': {
+                        color: colorMode.accent,
+                        fontWeight: 'bold'
+                      },
+                      '& b': {
+                        color: colorMode.accent,
+                        fontWeight: 'bold'
+                      },
+                      '& a': {
+                        color: colorMode.accent,
+                        textDecoration: 'underline'
+                      },
+                      '& hr': {
+                        marginTop: 4,
+                        marginBottom: 6,
+                        borderColor: 'gray.300'
+                      },
+                      '& ul': {
+                        marginLeft: 6,
+                        marginTop: 2,
+                        marginBottom: 4
+                      },
+                      '& ol': {
+                        marginLeft: 6,
+                        marginTop: 2,
+                        marginBottom: 4
+                      },
+                      '& li': {
+                        marginBottom: 2
+                      },
                       '& img': {
                         maxWidth: '100%',
+                        marginTop: '20px',
+                        marginBottom: '20px',
                         borderRadius: '8px'
-                      },
-                      '& div': {
-                        maxWidth: '100%'
                       }
                     }}
                   />
+                  {nextProject && (
+                    <Box mt={12} pt={8} borderTop="1px solid" borderColor="gray.300">
+                      <Text mb={4} fontSize="0.9rem" color="gray.600">
+                        Next Project
+                      </Text>
+                      <NextLink href={`/projects/${nextProject.slug}`} passHref>
+                        <Link
+                          fontSize="1.25rem"
+                          fontWeight="bold"
+                          color={colorMode.accent}
+                          textDecoration="none"
+                          position="relative"
+                          outline="none"
+                          _focus={{ outline: 'none' }}
+                          _hover={{
+                            filter: 'brightness(1.2)',
+                            _after: {
+                              opacity: 1
+                            }
+                          }}
+                          _after={{
+                            content: '""',
+                            position: 'absolute',
+                            bottom: '-4px',
+                            left: 0,
+                            width: '100%',
+                            height: '3px',
+                            backgroundColor: colorMode.accent,
+                            opacity: 0,
+                            transition: 'opacity 0.2s ease-in-out'
+                          }}
+                          transition="filter 0.2s ease-in-out"
+                        >
+                          {nextProject.title} →
+                        </Link>
+                      </NextLink>
+                    </Box>
+                  )}
                 </Box>
-              )}
-              <Heading as={'h1'} fontSize="1.5rem" fontWeight="bold" mb={8}>
-                {project.title}
-              </Heading>
-              <Box
-                width="100%"
-                dangerouslySetInnerHTML={{ __html: project.content }}
-                sx={{
-                  '& p': {
-                    marginTop: 4,
-                    lineHeight: 1.8
-                  },
-                  '& h2': {
-                    fontSize: '1.5rem',
-                    fontWeight: 'bold',
-                    marginTop: 8,
-                    marginBottom: 4,
-                    color: colorMode.accent
-                  },
-                  '& h3': {
-                    fontSize: '1.25rem',
-                    fontWeight: 'semibold',
-                    marginTop: 6,
-                    marginBottom: 2,
-                    color: colorMode.accent
-                  },
-                  '& strong': {
-                    color: colorMode.accent,
-                    fontWeight: 'bold'
-                  },
-                  '& b': {
-                    color: colorMode.accent,
-                    fontWeight: 'bold'
-                  },
-                  '& a': {
-                    color: colorMode.accent,
-                    textDecoration: 'underline'
-                  },
-                  '& hr': {
-                    marginTop: 4,
-                    marginBottom: 6,
-                    borderColor: 'gray.300'
-                  },
-                  '& ul': {
-                    marginLeft: 6,
-                    marginTop: 2,
-                    marginBottom: 4
-                  },
-                  '& ol': {
-                    marginLeft: 6,
-                    marginTop: 2,
-                    marginBottom: 4
-                  },
-                  '& li': {
-                    marginBottom: 2
-                  },
-                  '& img': {
-                    maxWidth: '100%',
-                    marginTop: '20px',
-                    marginBottom: '20px',
-                    borderRadius: '8px'
-                  }
-                }}
-              />
-              {nextProject && (
-                <Box mt={12} pt={8} borderTop="1px solid" borderColor="gray.300">
-                  <Text mb={4} fontSize="0.9rem" color="gray.600">
-                    Next Project
-                  </Text>
-                  <NextLink href={`/projects/${nextProject.slug}`} passHref>
-                    <Link
-                      fontSize="1.25rem"
-                      fontWeight="bold"
-                      color={colorMode.accent}
-                      textDecoration="none"
-                      position="relative"
-                      outline="none"
-                      _focus={{ outline: 'none' }}
-                      _hover={{
-                        filter: 'brightness(1.2)',
-                        _after: {
-                          opacity: 1
-                        }
-                      }}
-                      _after={{
-                        content: '""',
-                        position: 'absolute',
-                        bottom: '-4px',
-                        left: 0,
-                        width: '100%',
-                        height: '3px',
-                        backgroundColor: colorMode.accent,
-                        opacity: 0,
-                        transition: 'opacity 0.2s ease-in-out'
-                      }}
-                      transition="filter 0.2s ease-in-out"
-                    >
-                      {nextProject.title} →
-                    </Link>
-                  </NextLink>
-                </Box>
-              )}
+              </Box>
             </Box>
           </>
         )}
-      </Box>
+      </Section>
     </Layout>
   )
 }
@@ -174,7 +360,15 @@ export async function getStaticProps({ params }) {
     'hook',
     'problem',
     'contribution',
-    'result'
+    'result',
+    'year',
+    'role',
+    'context',
+    'team',
+    'technologies',
+    'duration',
+    'status',
+    'links'
   ])
   
   if (!project) {
