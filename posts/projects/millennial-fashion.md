@@ -2,7 +2,8 @@
 title: Millennial Fashion — Distributed Web Engineering Project
 slug: millennial-fashion
 type: project
-order: 5
+order: 7
+label: Course Project
 hook: E-commerce system engineered with explicit architectural planning, workload assumptions, and operational constraints for scalable distributed service deployment.
 problem: Building a web commerce system that scales, remains available under concurrent access, and is deployable in a realistic multi-node environment
 contribution: Three-tier architecture design, workload-driven infrastructure planning, formal system modeling, containerized multi-server deployment with load balancing
@@ -54,5 +55,5 @@ Test cases were organized into a formal table specifying test steps, expected ou
 
 ### Outcome
 
-The final system is an end-to-end scalable e-commerce system. Through this project, I learned how to plan, develop, and test a real-world distributed system that will prepare me for an engineering manager role.
+The final system is an end-to-end scalable e-commerce system. Through this project, I learned how to plan, develop, and test a multi-tier system under explicit workload and deployment constraints.
 

@@ -67,6 +67,22 @@ const LinkItem = ({ href, path, children }) => {
   )
 }
 
+const navLinks = [
+  { label: 'Research', href: '/#current-research' },
+  { label: 'Publications', href: '/#publications-and-preprints' },
+  { label: 'Experience', href: '/#experience' }
+  // { label: 'CV', href: '/cv.pdf', isExternal: true }
+]
+
+const NavLinks = () => {
+  const colorMode = useSelector(state => state.colorMode)
+  return navLinks.map(({ label, href, isExternal }) => (
+    <Link key={label} href={href} color={colorMode.accent} isExternal={isExternal}>
+      {label}
+    </Link>
+  ))
+}
+
 const Navbar = props => {
   const { path } = props
 
@@ -104,6 +120,7 @@ const Navbar = props => {
             <LinkItem href="/gallery" path={path}>
               gallery
             </LinkItem> */}
+            <NavLinks />
             <ColorMenu />
           </Stack>
 
@@ -132,6 +149,16 @@ const Navbar = props => {
             </Menu>
 
             <ColorMenu />
+          </Box>
+          <Box
+            display={{ base: 'flex', md: 'none' }}
+            gap={4}
+            justifyContent={'end'}
+            flexWrap="wrap"
+            mt={3}
+            fontSize="sm"
+          >
+            <NavLinks />
           </Box>
         </Box>
       </Container>

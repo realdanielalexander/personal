@@ -2,21 +2,22 @@
 title: Mini Minecraft
 slug: mini-minecraft
 type: project
-order: 3
-hook: Minecraft from scratch leveraging the GLSL shader engine built in C.
+order: 6
+label: Course Project
+hook: A voxel-based game engine built in C++/OpenGL with custom shaders, physics, collision handling, and GUI systems.
 problem: Building a 3D game engine from scratch with shader support
 contribution: Player physics and collision, texture generation and animation, GUI and crafting systems
 result: Complete 3D game with procedural world generation
 year: 2024
 role: Student
 context: UPenn CIS Graduate Course
-technologies: C, GLSL, OpenGL
+technologies: C++, Qt, GLSL, OpenGL
 ---
 
 [VIDEO_MINI_MINECRAFT]
 
 
-**Background**: This is the final project for Interactive Computer Graphics (CIS 5600) at Penn. Together with my teammates, Eric Dai and Zain Khan, I built a Minecraft clone from scratch in a month using GLSL shader engine in C. We started off with a plain bloc 
+**Background**: This is the final project for Interactive Computer Graphics (CIS 5600) at Penn. Together with my teammates, Eric Dai and Zain Khan, I built a Minecraft clone from scratch in a month in C++ with OpenGL and GLSL shaders.
 
 ### Player Input Registration and Physics Modeling
 

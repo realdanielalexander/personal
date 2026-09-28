@@ -2,15 +2,16 @@
 title: PennCloud — Fault-Tolerant Distributed Cloud Platform
 slug: penncloud
 type: project
-order: 6
-hook: Distributed cloud platform providing email and file storage services with strong consistency and fault tolerance, built from scratch on a custom key-value store.
+order: 3
+label: Systems Project
+hook: A distributed email and file-storage platform built on a custom partitioned key-value store. I implemented major parts of the replicated storage, coordination, failure detection, primary election, and recovery layers.
 problem: Building a fault-tolerant distributed system that maintains correctness, consistency, and availability under node failures
 contribution: Tablet-based distributed key-value store, synchronous replication protocol, Write-Ahead Logging, checkpointing, failure detection, and recovery mechanisms
 result: Complete distributed cloud platform with transparent failover, strong consistency guarantees, and validated fault tolerance
 year: 2024
 role: Engineer
 context: UPenn CIS Graduate Course
-technologies: Go, Distributed Systems, Key-Value Store, Replication
+technologies: Distributed Systems, Key-Value Store, Replication
 ---
 
 ![PennCloud Home Interface](/penncloud/home.png)
@@ -73,5 +74,5 @@ My primary contributions focused on the distributed storage and coordination lay
 
 ### Key Takeaways
 
-This project provided hands-on experience designing and validating a fault-tolerant distributed system where correctness under failure was treated as a first-class concern. It reinforced key lessons about consistency tradeoffs, recovery design, and observability, and directly informed my later research interests in large-scale inference and ML systems, where similar challenges arise in coordinating state, managing failures, and balancing performance with correctness.
+This project provided hands-on experience designing and validating a fault-tolerant distributed system where correctness under failure was treated as a first-class concern. It reinforced key lessons about consistency tradeoffs, recovery design, and observability, and carries into my research on networked systems, where coordinating state and communication across many nodes, and balancing performance against correctness, are central challenges.
 

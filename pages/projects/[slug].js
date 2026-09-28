@@ -239,6 +239,25 @@ const ProjectDetail = ({ project, nextProject }) => {
                       />
                     </Box>
                   )}
+                  {project.label && (
+                    <Text
+                      as="span"
+                      alignSelf="flex-start"
+                      fontSize="0.7rem"
+                      fontWeight="bold"
+                      letterSpacing="0.08em"
+                      textTransform="uppercase"
+                      color={colorMode.accent}
+                      border="1px solid"
+                      borderColor={colorMode.accent}
+                      borderRadius="4px"
+                      px="6px"
+                      py="1px"
+                      mb={2}
+                    >
+                      {project.label}
+                    </Text>
+                  )}
                   <Heading as={'h1'} fontSize="1.5rem" fontWeight="bold" mb={4}>
                     {project.title}
                   </Heading>
@@ -368,7 +387,8 @@ export async function getStaticProps({ params }) {
     'technologies',
     'duration',
     'status',
-    'links'
+    'links',
+    'label'
   ])
   
   if (!project) {

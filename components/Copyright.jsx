@@ -6,7 +6,7 @@ const Copyright = () => {
   return (
     <Section paddingY={8} display="flex" flexDirection="column" margin={0}>
       <Text textAlign={'center'} margin={0}>
-        &copy; 2025 Daniel Alexander | Last updated November 2025<br />
+        &copy; 2026 Daniel Alexander<br />
         <Text fontSize={'sm'} color={'gray.500'}>
           Built with Next.js, Chakra UI, and React. Hosted on Vercel.
         </Text> 
